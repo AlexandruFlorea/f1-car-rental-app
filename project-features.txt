@@ -1,0 +1,60 @@
+Formula one car rental app
+
+Short description: a platform through which you can rent a Formula one car for a few laps on a circuit of your choice.
+
+Key features - core:
+1. Car selection
+2. Track selection
+3. User registration
+4. Shopping cart / checkout
+5. Active rentals / Rental history
+
+
+Possible features:
+1. Weather information (embedded widget)
+2. Multi-language support
+3. Detect user location and suggest the closest track
+4. 
+
+
+Feature description
+Car - available fields
+1. Name (team)
+2. Power unit make
+3. Races won
+4. Driver
+5. Handling
+
+
+Track - available fields
+1. Name
+2. Location
+3. Length (km)
+4. Average G per lap
+5.
+
+********** User - available fields **********
+1. first name
+2. last name
+3. email address
+4. profile
+
+Reservation - available fields
+1. date
+2. number of laps
+
+
+********** Project status ***********
+1. .env - done
+2. Passwordless authentication - done
+3. Authenticate with email instead of username - done
+        Change username with email for authentication - Migrate Users app first, but do not define anything in you AuthUser (just pass).
+        After generating the migration, define your Custom AuthUser model, with email instead of username.
+4. Send confirmation email - untested
+5. Static & media files
+6. Registration - unfinished
+7. Login - not working
+
+
+Change username with email for authentication - Migrate Users app first, but do not define anything in you AuthUser (just pass).
+After generating the migration, define your Custom AuthUser model, with email instead of username.

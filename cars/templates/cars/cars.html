@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>F1 experience</title>
+{% endblock %}
+
+{% block content %}
+    <h1>Check out the available rides below:</h1>
+    <ul>
+        {% for car in cars %}
+            <li style="margin-bottom: 10px;">
+                {{ car.name }} - {{ car.price_per_lap }} EUR
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
