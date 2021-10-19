@@ -5,16 +5,17 @@ Short description: a platform through which you can rent a Formula one car for a
 Key features - core:
 1. Car selection
 2. Track selection
-3. User registration
+3. User registration - done
 4. Shopping cart / checkout
 5. Active rentals / Rental history
 
 
 Possible features:
-1. Weather information (embedded widget)
-2. Multi-language support
+1. Weather information (embedded widget) / must show weather based on track location
+2. Internationalization and localization
 3. Detect user location and suggest the closest track
-4. 
+4.
+5.
 
 
 Feature description
@@ -42,6 +43,7 @@ Track - available fields
 Reservation - available fields
 1. date
 2. number of laps
+3. Cost
 
 
 ********** Project status ***********
@@ -50,11 +52,10 @@ Reservation - available fields
 3. Authenticate with email instead of username - done
         Change username with email for authentication - Migrate Users app first, but do not define anything in you AuthUser (just pass).
         After generating the migration, define your Custom AuthUser model, with email instead of username.
-4. Send confirmation email - untested
-5. Static & media files
-6. Registration - unfinished
-7. Login - not working
+4. Send confirmation email - done
+5. Registration - done
+6. Login - done
+7. Profile - done
+8. Static & media files
+9.
 
-
-Change username with email for authentication - Migrate Users app first, but do not define anything in you AuthUser (just pass).
-After generating the migration, define your Custom AuthUser model, with email instead of username.

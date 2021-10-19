@@ -1,7 +1,8 @@
 from django.shortcuts import render, Http404, redirect, reverse, get_object_or_404, HttpResponse
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from users.forms import RegisterForm, PasswordForm
+from users.forms import RegisterForm, PasswordForm, ProfileImageForm
 from users.models import Activation
 from users.email import send_activation_email
 from django.utils import timezone
@@ -9,16 +10,14 @@ import secrets
 from utils.constants.activation import ACTIVATION_DICT
 
 
-
 def login_user(request):
     if request.user.is_authenticated:
         return redirect('/')
 
     if request.method == 'POST':
-        username = request.POST.get('username')
+        username = request.POST.get('email')  # 'username' is a mandatory parameter name for authenticate()
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
-        print(f'{username}')
 
         if user is None:
             raise Http404('Username or password not provided.')
@@ -44,8 +43,6 @@ def register_user(request):
 
         if form.is_valid():
             user = form.save()
-            # login(request, user)
-            messages.success(request, "Registration successful.")
 
             return redirect('/')
 
@@ -69,7 +66,7 @@ def activate(request, token):
             form.save()
             return redirect(reverse('users:login'))
 
-    return render(request, 'users/set_password.html', {
+    return render(request, 'users/email/set_password.html', {
         'form': form,
         'token': token,
     })
@@ -90,5 +87,18 @@ def regenerate_token(request, token):
     return redirect('/')
 
 
+@login_required
 def show_profile(request):
-    pass
+    if request.method == 'GET':
+        form = ProfileImageForm()
+    else:
+        form = ProfileImageForm(request.POST, request.FILES, instance=request.user.profile)
+
+        if form.is_valid():
+            form.save()
+
+            return redirect(reverse('users:profile'))
+
+    return render(request, 'users/profile.html', {
+        'form': form,
+    })

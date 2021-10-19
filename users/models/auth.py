@@ -28,7 +28,6 @@ class AuthUser(AbstractUser):
     username = None
     email = models.EmailField(_('email address'), null=False, blank=False, unique=True)
     password = models.CharField(_('password'), max_length=128, null=True, blank=False, default=None)
-    # preferred_language = models.CharField(verbose_name='language', max_length=128, null=True, default='English')
 
     USERNAME_FIELD = 'email'  # User identifier column
     REQUIRED_FIELDS = ['first_name', 'last_name']

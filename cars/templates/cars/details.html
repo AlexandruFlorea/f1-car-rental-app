@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}
+    <title>Beast selection</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <p><strong>Name:</strong> {{ car.name }}</p>
+        <p><strong>Cost per lap:</strong> {{ car.price_per_lap }} EUR</p>
+        <p><strong>Power unit:</strong> {{ car.power_unit }}</p>
+        <p><strong>Handling: </strong>{{ car.handling }}/10</p>
+    </div>
+{% endblock %}

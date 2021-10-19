@@ -5,17 +5,19 @@
 {% endblock %}
 
 {% block content %}
+
+<h5>Enter your credentials below:</h5>
 <form action="{% url 'users:login' %}" method="post">
     {% csrf_token %}
-    <div>
-        <label>Username</label>
-        <input type="text" name="username" />
-    <div>
+    <div class="field">
+        <label>Email address</label>
+        <input type="text" name="email" placeholder="Enter your email address"/>
     </div>
-        <label for="">Password</label>
-        <input type="password" name="password" />
+    <div class="field">
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter your password"/>
 
     </div>
-    <input type="submit" value="Login"/>
+    <button class="btn btn-primary" type="submit">Login</button>
 </form>
 {% endblock %}

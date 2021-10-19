@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Check out the available rides below:</h1>
+    <h2>Check out the available rides below:</h2>
     <ul>
         {% for car in cars %}
             <li style="margin-bottom: 10px;">
-                {{ car.name }} - {{ car.price_per_lap }} EUR
+                <strong>{{ car.name }}</strong> - {{ car.price_per_lap }} EUR <a href="{% url 'cars:details' car.id %}">More details</a>
             </li>
         {% endfor %}
     </ul>

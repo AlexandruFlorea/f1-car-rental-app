@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>My profile</title>
+{% endblock %}
+
+{% block content %}
+<h2>Profile details</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        <img src="{{ request.user.profile.image_url }}" width="200px"  alt="my image"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        First name: {{ request.user.first_name }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        Last name: {{ request.user.last_name }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        Email: {{ request.user.email }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <form method="post" action="{% url 'users:profile' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Upload" />
+            </form>
+        </div>
+    </div>
+{% endblock %}

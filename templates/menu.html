@@ -1,11 +1,12 @@
 <nav>
     <a href="/">Homepage</a>
     <a href="{% url 'cars:all' %}">Cars</a>
-    <a href="tracks/">Tracks</a>
+    <a href="{% url 'tracks:all' %}">Tracks</a>
     {% if not request.user.is_authenticated %}
     <a href="{% url 'users:login' %}">Login</a>
     <a href="{% url 'users:register' %}">Register</a>
     {% else %}
     <a href="{% url 'users:logout' %}">Logout</a>
+    <a href="{% url 'users:profile' %}">My profile</a>
     {% endif %}
 </nav>

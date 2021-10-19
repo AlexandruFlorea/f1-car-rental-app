@@ -7,7 +7,7 @@ from django.shortcuts import reverse
 
 def send_activation_email(activation):
     user = activation.user
-    activate_route = reverse('users:activate', args=activation.token)
+    activate_route = reverse('users:activate', args=(activation.token,))
 
     context = {
         'first_name': user.first_name,
@@ -17,7 +17,7 @@ def send_activation_email(activation):
         'url': f'{settings.LOCALHOST_DOMAIN}{activate_route}'
     }
 
-    template = get_template('users/email/set_password.html')
+    template = get_template('users/email/activation.html')
     content = template.render(context)
 
     mail = EmailMultiAlternatives(

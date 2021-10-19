@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
 
+
 {% block title %}
     <title>Circuit selection</title>
 {% endblock %}
 
 {% block content %}
 
+    <h1>Available circuits</h1>
+    <ul>
+        {% for track in tracks %}
+            <li style="margin-bottom: 10px;">
+                <strong>{{ track.name }}</strong>, located in {{ track.location }} <a href="{% url 'tracks:details' track.id %}">View details</a>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}

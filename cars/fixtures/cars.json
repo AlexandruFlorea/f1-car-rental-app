@@ -1,0 +1,103 @@
+[
+  {
+    "model": "cars.car",
+    "id": 1,
+    "fields": {
+      "name": "Mercedes AMG",
+      "power_unit": "Mercedes",
+      "races_won": 13,
+      "handling": 9,
+      "price_per_lap": 1500
+    }
+  },   {
+    "model": "cars.car",
+    "id": 2,
+    "fields": {
+      "name": "RedBull Racing",
+      "power_unit": "Honda",
+      "races_won": 2,
+      "handling": 6,
+      "price_per_lap": 1400
+    }
+  },  {
+    "model": "cars.car",
+    "id": 3,
+    "fields": {
+      "name": "Ferrari",
+      "power_unit": "Ferrari",
+      "races_won": 0,
+      "handling": 7,
+      "price_per_lap": 1400
+    }
+  },  {
+    "model": "cars.car",
+    "id": 4,
+    "fields": {
+      "name": "McLaren",
+      "power_unit": "Renault",
+      "races_won": 0,
+      "handling": 8,
+      "price_per_lap": 1300
+    }
+  },  {
+    "model": "cars.car",
+    "id": 5,
+    "fields": {
+      "name": "Alfa Romeo",
+      "power_unit": "Ferrari",
+      "races_won": 0,
+      "handling": 6,
+      "price_per_lap": 1000
+    }
+  },  {
+    "model": "cars.car",
+    "id": 6,
+    "fields": {
+      "name": "AlphaTauri",
+      "power_unit": "Honda",
+      "races_won": 1,
+      "handling": 7,
+      "price_per_lap": 1000
+    }
+  },  {
+    "model": "cars.car",
+    "id": 7,
+    "fields": {
+      "name": "Williams",
+      "power_unit": "Mercedes",
+      "races_won": 0,
+      "handling": 5,
+      "price_per_lap": 1000
+    }
+  },  {
+    "model": "cars.car",
+    "id": 8,
+    "fields": {
+      "name": "Renault",
+      "power_unit": "Renault",
+      "races_won": 0,
+      "handling": 7,
+      "price_per_lap": 1000
+    }
+  },  {
+    "model": "cars.car",
+    "id": 9,
+    "fields": {
+      "name": "Aston Martin",
+      "power_unit": "Mercedes",
+      "races_won": 0,
+      "handling": 7,
+      "price_per_lap": 1000
+    }
+  },  {
+    "model": "cars.car",
+    "id": 10,
+    "fields": {
+      "name": "Haas F1",
+      "power_unit": "Ferrari",
+      "races_won": 0,
+      "handling": 4,
+      "price_per_lap": 1000
+    }
+  }
+]

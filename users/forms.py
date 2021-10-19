@@ -2,8 +2,10 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from users.email import send_activation_email
+from users.models import Profile
 from django.utils import timezone
 from django.contrib.auth.password_validation import validate_password, password_validators_help_text_html
+from utils.upload import handle_uploaded_file
 
 
 AuthUserModel = get_user_model()
@@ -14,14 +16,19 @@ class RegisterForm(UserCreationForm):
         model = AuthUserModel
         fields = ['first_name', 'last_name', 'email']
 
-    password1 = None
     password2 = None
+    password1 = None
 
     def save(self, commit=True):
         user = super(UserCreationForm, self).save(commit=commit)
-        send_activation_email(user)
 
         return user
+
+
+class ProfileImageForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['avatar']
 
 
 class PasswordForm(forms.Form):
@@ -67,3 +74,4 @@ class PasswordForm(forms.Form):
         self._user.activation.token = None
         self._user.activation.activated_at = timezone.now()
         self._user.activation.save()
+

@@ -1,0 +1,164 @@
+[
+    {
+    "model": "tracks.track",
+    "id": 1,
+    "fields": {
+      "name": "Bahrain International Circuit",
+      "location": "Sakir, Bahrain",
+      "length": 5.412
+    }
+  },
+      {
+    "model": "tracks.track",
+    "id": 2,
+    "fields": {
+      "name": "Autodromo Enzo e Dino Ferrari",
+      "location": "Imola, Italy",
+      "length": 4.909
+    }
+  },    {
+    "model": "tracks.track",
+    "id": 3,
+    "fields": {
+      "name": "Autódromo Internacional do Algarve",
+      "location": "Portimao, Portugal",
+      "length": 4.653
+    }
+  },    {
+    "model": "tracks.track",
+    "id": 4,
+    "fields": {
+      "name": "Circuit de Barcelona-Catalunya",
+      "location": "Barcelona, Spain",
+      "length": 4.675
+    }
+  },    {
+    "model": "tracks.track",
+    "id": 5,
+    "fields": {
+      "name": "Circuit de Monaco",
+      "location": "Monte Carlo, Monaco",
+      "length": 3.337
+    }
+  },    {
+    "model": "tracks.track",
+    "id": 6,
+    "fields": {
+      "name": "Baku City Circuit",
+      "location": "Baku, Azerbaijan",
+      "length": 6.003
+    }
+  },    {
+    "model": "tracks.track",
+    "id": 7,
+    "fields": {
+      "name": "Circuit Paul Ricard",
+      "location": "Le Castellet, France",
+      "length": 5.842
+    }
+  },    {
+    "model": "tracks.track",
+    "id": 8,
+    "fields": {
+      "name": "Red Bull Ring",
+      "location": "Spielberg, Austria",
+      "length": 4.318
+    }
+  },    {
+    "model": "tracks.track",
+    "id": 9,
+    "fields": {
+      "name": "Silverstone Circuit",
+      "location": "Silverstone, Great Britain",
+      "length": 5.891
+    }
+  },    {
+    "model": "tracks.track",
+    "id": 10,
+    "fields": {
+      "name": "Hungaroring",
+      "location": "Budapest, Hungary",
+      "length": 4.381
+    }
+  },    {
+    "model": "tracks.track",
+    "id": 11,
+    "fields": {
+      "name": "Circuit de Spa-Francorchamps",
+      "location": "Spa-Francorchamps, Belgium",
+      "length": 7.004
+    }
+  },    {
+    "model": "tracks.track",
+    "id": 12,
+    "fields": {
+      "name": "Circuit Zandvoort",
+      "location": "Zandvoort, Netherlands",
+      "length": 4.259
+    }
+  },    {
+    "model": "tracks.track",
+    "id": 13,
+    "fields": {
+      "name": "Autodromo Nazionale Monza",
+      "location": "Monza, Italy",
+      "length": 5.793
+    }
+  },    {
+    "model": "tracks.track",
+    "id": 14,
+    "fields": {
+      "name": "Sochi Autodrom",
+      "location": "Sochi, Russia",
+      "length": 5.848
+    }
+  },    {
+    "model": "tracks.track",
+    "id": 15,
+    "fields": {
+      "name": "Intercity Istanbul Park",
+      "location": "Istanbul, Turkey",
+      "length": 5.338
+    }
+  },    {
+    "model": "tracks.track",
+    "id": 16,
+    "fields": {
+      "name": "Autódromo Hermanos Rodríguez",
+      "location": "Mexico City, Mexico",
+      "length": 4.304
+    }
+  },    {
+    "model": "tracks.track",
+    "id": 17,
+    "fields": {
+      "name": "Autódromo José Carlos Pace",
+      "location": "Sao Paulo, Brasil",
+      "length": 4.309
+    }
+  },    {
+    "model": "tracks.track",
+    "id": 18,
+    "fields": {
+      "name": "Losail International Circuit",
+      "location": "Lusail, Qatar",
+      "length": 5.380
+    }
+  },    {
+    "model": "tracks.track",
+    "id": 19,
+    "fields": {
+      "name": "Jeddah Corniche Circuit",
+      "location": "Jeddah, Saudi Arabia",
+      "length": 6.174
+    }
+  },    {
+    "model": "tracks.track",
+    "id": 20,
+    "fields": {
+      "name": "Yas Marina Circuit",
+      "location": "Yas Island, Abu Dhabi",
+      "length": 5.281
+    }
+  }
+]
