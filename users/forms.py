@@ -1,11 +1,10 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
-from users.email import send_activation_email
 from users.models import Profile
 from django.utils import timezone
 from django.contrib.auth.password_validation import validate_password, password_validators_help_text_html
-from utils.upload import handle_uploaded_file
+
 
 
 AuthUserModel = get_user_model()

@@ -29,9 +29,8 @@ class Car(models.Model):
 
         gallery = jsonobj[self.name]
         image_urls = []
-        print(image_urls)
+
         for image in gallery:
             image_urls += [static(image)]
 
-            return image_urls
         return image_urls
