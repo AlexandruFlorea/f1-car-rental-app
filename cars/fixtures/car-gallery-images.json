@@ -1,0 +1,33 @@
+{
+   "Mercedes AMG": [
+      "cars/images/large/mercedes-amg.jpg",
+      "cars/images/large/mercedes-amg1.jpg"
+   ],
+   "Aston Martin": [
+      "cars/images/large/aston-martin.jpg"
+   ],
+   "RedBull Racing": [
+      "cars/images/large/redbull-racing.jpg"
+   ],
+      "Ferrari": [
+      "cars/images/large/ferrari.jpg"
+   ],
+      "McLaren": [
+      "cars/images/large/mclaren.jpg"
+   ],
+      "Alfa Romeo": [
+      "cars/images/large/alfa-romeo.jpg"
+   ],
+      "Williams": [
+      "cars/images/large/williams.jpg"
+   ],
+      "Alpine": [
+      "cars/images/large/alpine.jpg"
+   ],
+      "Haas F1": [
+      "cars/images/large/haas-f1.jpg"
+   ],
+      "AlphaTauri": [
+      "cars/images/large/alphatauri.jpg"
+   ]
+}

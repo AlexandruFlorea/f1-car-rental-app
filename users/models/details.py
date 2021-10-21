@@ -20,7 +20,7 @@ class Activation(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
-    avatar = models.ImageField(upload_to='profile_images/', null=True, default='images/default_image.jpg')
+    avatar = models.ImageField(upload_to='profile_images/', null=True, default='users/profile_images/default_image.jpg')
 
     @property
     def image_url(self):
@@ -28,4 +28,4 @@ class Profile(models.Model):
 
             return self.avatar.url
 
-        return static('images/default_image.jpg')
+        return static('users/profile_images/default_image.jpg')

@@ -73,7 +73,7 @@
     "model": "cars.car",
     "id": 8,
     "fields": {
-      "name": "Renault",
+      "name": "Alpine",
       "power_unit": "Renault",
       "races_won": 0,
       "handling": 7,

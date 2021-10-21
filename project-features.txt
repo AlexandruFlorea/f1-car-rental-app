@@ -11,7 +11,7 @@ Key features - core:
 
 
 Possible features:
-1. Weather information (embedded widget) / must show weather based on track location
+1. Weather information - must show weather based on track location - url constructor method/search parameters
 2. Internationalization and localization
 3. Detect user location and suggest the closest track
 4.
@@ -56,6 +56,6 @@ Reservation - available fields
 5. Registration - done
 6. Login - done
 7. Profile - done
-8. Static & media files
-9.
+8. Password reset
+9. Static & media files
 

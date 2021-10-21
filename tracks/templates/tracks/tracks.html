@@ -6,13 +6,40 @@
 {% endblock %}
 
 {% block content %}
+    <div>
+        <div>
+            <h1>Available circuits</h1>
+        </div>
 
-    <h1>Available circuits</h1>
-    <ul>
-        {% for track in tracks %}
-            <li style="margin-bottom: 10px;">
-                <strong>{{ track.name }}</strong>, located in {{ track.location }} <a href="{% url 'tracks:details' track.id %}">View details</a>
-            </li>
-        {% endfor %}
-    </ul>
+        <div class="pagination">
+            {% if page_obj.paginator.num_pages > 1 %}
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            {% endif %}
+        </div>
+            <div>
+                <ul>
+                    {% for track in page_obj %}
+                        <li style="margin-bottom: 10px;" class="col-12">
+                            <div>
+                                <strong>{{ track.name }}</strong>, located in {{ track.location }} <a href="{% url 'tracks:details' track.id %}">View details</a>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+    </div>
 {% endblock %}

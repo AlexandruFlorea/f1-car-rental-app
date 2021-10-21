@@ -5,12 +5,31 @@
 {% endblock %}
 
 {% block content %}
-    <h2>Check out the available rides below:</h2>
-    <ul>
-        {% for car in cars %}
-            <li style="margin-bottom: 10px;">
-                <strong>{{ car.name }}</strong> - {{ car.price_per_lap }} EUR <a href="{% url 'cars:details' car.id %}">More details</a>
-            </li>
-        {% endfor %}
-    </ul>
+    <h2>Constructors list:</h2>
+<div>
+    <div class="row">
+        <div>
+            <ul>
+
+                {% for car in cars %}
+                    {% for image in car.image_urls %}
+                    <div>
+                        <img src="{{ image }}" alt="">
+                    </div>
+                    {% endfor %}
+                        <li style="margin-bottom: 10px;" >
+                        <div>
+                            <p>
+                                Team: <strong>{{ car.name }}</strong>
+                                Power unit: <strong> {{ car.power_unit }}</strong>
+                                Handling: <strong>{{ car.handling }}/10</strong>
+                                <a href="{% url 'cars:details' car.id %}">More details</a>
+                            </p>
+                        </div>
+                        </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
 {% endblock %}
