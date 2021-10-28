@@ -2,13 +2,18 @@
 
 {% block title %}
     <title>Circuit list</title>
+    <h2 class="main"><strong>{{track.name}}</strong></h2>
 {% endblock %}
 
 {% block content %}
-{% include 'weather.html' %}
+        {% for image in track.gallery_image_urls %}
+            <img src="{{ image }}" width="1000px" alt="main">
+        {% endfor %}
+
     <div class="container">
         <p><strong>Name:</strong> {{ track.name }}</p>
         <p><strong>Location:</strong> {{ track.location }}</p>
         <p><strong>Length:</strong> {{ track.length }} km</p>
     </div>
+
 {% endblock %}

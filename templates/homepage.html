@@ -1,24 +1,32 @@
 {% extends 'base.html' %}
-{% include 'weather.html' %}
 {% load static %}
 
 {% block title %}
+<head>
     <title>F1 experience</title>
+</head>
 {% endblock %}
 
 {% block content %}
-<h1>
-    <img src="{% static 'images/logos/F1-logo-red.png' %}" width="75"  alt=""/>
-    <span>{{ title }}</span>
-</h1>
-<h2>The ride of a lifetime awaits</h2>
-<h3>Monthly favourites:</h3>
-<ul>
-   {% for favourite in favourites %}
-        <li style="margin-bottom: 10px;">
-            <strong>{{ favourite.name }}</strong>: {{ favourite.value }} rentals
-        </li>
-    {% endfor %}
-</ul>
+<div class="main">
+    <body style="background-image: url(//localhost:8000/static/cars/images/wallpapers/win.jpg)">
+        <div style="color: white">
+            <h2>
+                <img src="{% static 'cars/images/logos/F1-logo-red.png' %}" width="75"  alt=""/>
+                <span>{{ title }}</span>
+            </h2>
+            <div>
 
+            </div>
+            <h4 style="color: white">Monthly favourites:</h4>
+            <ul>
+               {% for favourite in favourites %}
+                    <li style="margin-bottom: 10px;">
+                        <strong>{{ favourite.name }}</strong>: {{ favourite.value }} rentals
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </body>
+</div>
 {% endblock %}

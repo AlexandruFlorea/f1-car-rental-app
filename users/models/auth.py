@@ -27,7 +27,7 @@ class AuthUserManager(BaseUserManager):  # Interfata pentru comunicare cu baza d
 class AuthUser(AbstractUser):
     username = None
     email = models.EmailField(_('email address'), null=False, blank=False, unique=True)
-    password = models.CharField(_('password'), max_length=128, blank=True, default='')
+    password = models.CharField(_('password'), max_length=128, blank=False,null=True, default='')
 
     USERNAME_FIELD = 'email'  # User identifier column
     REQUIRED_FIELDS = ['first_name', 'last_name']

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="main" align="center">
 <h5>Enter your credentials below:</h5>
 <form action="{% url 'users:login' %}" method="post">
     {% csrf_token %}
@@ -20,4 +20,5 @@
     </div>
     <button class="btn btn-primary" type="submit">Login</button>
 </form>
+</div>
 {% endblock %}

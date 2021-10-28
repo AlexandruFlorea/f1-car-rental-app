@@ -27,6 +27,8 @@ urlpatterns = [
     path('cars/', include('cars.urls')),
     path('users/', include('users.urls')),
     path('tracks/', include('tracks.urls')),
+    path('bookings/', include('bookings.urls')),
+
 ]
 
 if settings.DEBUG is True:

@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block content %}
-<h2>Profile details</h2>
+<body style="background-image: url(//localhost:8000/static/cars/images/wallpapers/win.jpg)">
+<h2 class="main" style="color: white">Profile details</h2>
     <div class="container">
         <div class="row">
             <div class="col-6">
@@ -18,22 +19,22 @@
             <div class="col-6">
                 <div class="row">
                     <div class="col-12">
-                        First name: {{ request.user.first_name }}
+                        <strong>First name: {{ request.user.first_name }}</strong>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        Last name: {{ request.user.last_name }}
+                        <strong>Last name: {{ request.user.last_name }}</strong>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        Email: {{ request.user.email }}
+                        <strong>Email: {{ request.user.email }}</strong>
                     </div>
                 </div>
             </div>
         </div>
-        <div>
+        <div style="color: white">
             <form method="post" action="{% url 'users:profile' %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
@@ -41,4 +42,5 @@
             </form>
         </div>
     </div>
+</body>
 {% endblock %}

@@ -14,8 +14,11 @@ Possible features:
 1. Weather information - must show weather based on track location - url constructor method/search parameters
 2. Internationalization and localization
 3. Detect user location and suggest the closest track
-4.
-5.
+4. Search function
+5. Booking confirmation (email + pdf)
+6. Web scrapping from the F1 site (the latest news)
+7. About, contact
+8.
 
 
 Feature description
@@ -50,12 +53,16 @@ Reservation - available fields
 1. .env - done
 2. Passwordless authentication - done
 3. Authenticate with email instead of username - done
-        Change username with email for authentication - Migrate Users app first, but do not define anything in you AuthUser (just pass).
+        Change username with email for authentication - Make sure there are no other apps installed. Migrate Users app first, but do not define anything in you AuthUser (just pass).
         After generating the migration, define your Custom AuthUser model, with email instead of username.
 4. Send confirmation email - done
 5. Registration - done
 6. Login - done
 7. Profile - done
-8. Password reset
-9. Static & media files
+8. Password reset - almost
+9. Static & media files - done
+10. Booking process
+11. Display messages (Django built-in) - done
+12. Categories and sorting
+13.
 
