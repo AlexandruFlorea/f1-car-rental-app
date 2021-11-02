@@ -1,0 +1,10 @@
+[
+    {
+    "model": "tracks.track",
+    "id": 56,
+    "fields": {
+      "available_from": "2021-11-05 00:00:00",
+      "available_to": "2021-11-08 00:00:00"
+    }
+  }
+]

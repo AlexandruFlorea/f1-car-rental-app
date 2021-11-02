@@ -6,14 +6,30 @@
 {% endblock %}
 
 {% block content %}
+
+<div style="position:relative; left:1500px; top:20px">
+    <iframe src="https://www.meteoblue.com/en/weather/widget/daily/{{ track.weather_code }}?geoloc=fixed&days=4&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&precipunit=MILLIMETER&coloured=coloured&pictoicon=0&pictoicon=1&maxtemperature=0&maxtemperature=1&mintemperature=0&mintemperature=1&windspeed=0&windspeed=1&windgust=0&winddirection=0&uv=0&humidity=0&precipitation=0&precipitation=1&precipitationprobability=0&precipitationprobability=1&spot=0&pressure=0&layout=light"  frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox" style="width: 216px; height: 420px"></iframe><div><!-- DO NOT REMOVE THIS LINK --><a href="https://www.meteoblue.com/en/weather/week/{{ track.weather_code }}?utm_source=weather_widget&utm_medium=linkus&utm_content=daily&utm_campaign=Weather%2BWidget" target="_blank">meteoblue</a></div>
+</div>
+
+<div class="container">
         {% for image in track.gallery_image_urls %}
             <img src="{{ image }}" width="1000px" alt="main">
         {% endfor %}
-
-    <div class="container">
-        <p><strong>Name:</strong> {{ track.name }}</p>
-        <p><strong>Location:</strong> {{ track.location }}</p>
-        <p><strong>Length:</strong> {{ track.length }} km</p>
-    </div>
-
+</div>
+<div class="container">
+    <p><strong>Name:</strong> {{ track.name }}</p>
+    <p><strong>Location:</strong> {{ track.location }}</p>
+    <p><strong>Length:</strong> {{ track.length }} km</p>
+    <p><strong>Availability:</strong> {{ track.date_available_from }} - {{ track.date_available_until}}</p>
+</div>
+<div class="container">
+    <h4>Bookings on this circuit: </h4>
+        {% for booking in bookings %}
+            <ul>
+                <li>
+                    {{ booking }}
+                </li>
+            </ul>
+        {% endfor %}
+</div>
 {% endblock %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from cars.models import Car
+from bookings.models import Booking
 
 
 def show_all_cars(request):
@@ -16,7 +17,9 @@ def show_all_cars(request):
 
 def show_car_details(request, car_id):
     car = get_object_or_404(Car, pk=car_id)
+    bookings = Booking.objects.filter(car=car_id)
 
     return render(request, 'cars/details.html', {
-        'car': car
+        'car': car,
+        'bookings': bookings,
     })

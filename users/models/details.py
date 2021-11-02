@@ -5,6 +5,7 @@ from django.utils import timezone
 from utils.constants.activation import ACTIVATION_DICT
 
 
+
 class Activation(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='activation')
     token = models.CharField(max_length=64, null=True, default=None, blank=False, unique=True)
@@ -29,3 +30,8 @@ class Profile(models.Model):
             return self.avatar.url
 
         return static('users/profile_images/default_image.jpg')
+
+#
+# class Cart(models.Model):
+#     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='cart')  # user.cart - gives access to a user's cart
+#     data = models.JSONField()

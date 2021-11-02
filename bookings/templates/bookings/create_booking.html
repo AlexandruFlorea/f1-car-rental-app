@@ -1,10 +1,32 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
 
 {% block title %}
     <title>Book now</title>
 {% endblock %}
 
 {% block content %}
+<center>
     <h3>Select from the below options</h3>
+    <br><br/>
+    {% if submitted %}
+        Your booking was created successfully!
+    {% else  %}
+        <div align="center">
+            <form action="." method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Submit" class="btn btn-secondary">
+            </form>
+
+        </div>
+
+    {% endif  %}
+</center>
+        <div>
+
+
+        </div>
 {% endblock %}
 

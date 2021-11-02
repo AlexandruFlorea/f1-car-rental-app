@@ -151,6 +151,8 @@ AUTH_USER_MODEL = 'users.AuthUser'  # This tells Django that we have a custom us
 
 LOCALHOST_DOMAIN = 'http://localhost:8000'
 
+SESSION_SAVE_EVERY_REQUEST = True
+
 # Email_send
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = config('EMAIL_HOST')

@@ -10,8 +10,7 @@ from django.conf import settings
 import secrets
 from utils.constants.activation import ACTIVATION_DICT
 from django.shortcuts import render, redirect
-from django.core.mail import send_mail, BadHeaderError, EmailMultiAlternatives
-from django.http import HttpResponse
+from django.core.mail import EmailMultiAlternatives
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth import get_user_model
 from django.template.loader import get_template
@@ -34,7 +33,6 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
 
         if user is None:
-            # raise Http404('Username or password not provided.')
             messages.error(request, 'Login failed, please try again.')
 
             return render(request, 'users/login.html', {})
@@ -43,9 +41,7 @@ def login_user(request):
             messages.success(request, 'You have successfully logged in.')
             return redirect('/')
 
-    return render(request, 'users/login.html', {
-
-    })
+    return render(request, 'users/login.html', {})
 
 
 def logout_user(request):

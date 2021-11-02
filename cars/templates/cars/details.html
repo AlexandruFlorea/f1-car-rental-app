@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    <title>{{car.name}}</title>
+    <title>{{ car.name }}</title>
 {% endblock %}
 
 {% block content %}
-<div class="main">
-    <h3>{{car.name}}</h3>
+<div class="container">
+    <h3>{{ car.name }}</h3>
     <div>
         <ul>
             {% for image in car.gallery_image_urls %}
@@ -15,10 +15,20 @@
         </ul>
     </div>
         <div class="container">
-            <p><strong>Name:</strong> {{ car.name }}</p>
-            <p><strong>Cost per lap:</strong> {{ car.price_per_lap }} EUR</p>
+            <p><strong>Team name:</strong> {{ car.name }}</p>
             <p><strong>Power unit:</strong> {{ car.power_unit }}</p>
             <p><strong>Handling: </strong>{{ car.handling }}/10</p>
+            <p><strong>Rate:</strong> {{ car.rate }} EUR per session</p>
+        </div>
+        <div>
+            <h4>Bookings for this monopost: </h4>
+            {% for booking in bookings %}
+                <ul>
+                    <li>
+                        {{ booking }}
+                    </li>
+                </ul>
+            {% endfor %}
         </div>
 </div>
 {% endblock %}

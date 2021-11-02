@@ -1,13 +1,16 @@
-
-  <head>
       {% include 'menu.html' %}
 
-
       {% load static %}
-<div style="background-image: url(//localhost:8000/static/cars/images/wallpapers/win.jpg)"></div>
-<link rel="stylesheet" href="{% static 'styles/main.css' %}">
+      {% block extrahead %}
+      <link rel="shortcut icon" href="{% static 'cars/images/logos/favicon.ico' %}">
+      {% endblock %}
+  <head>
+      <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+
+
 
     {% block title %}
+        <title></title>
     {% endblock %}
 
     {% block styles %}

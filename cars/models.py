@@ -14,7 +14,10 @@ class Car(models.Model):
     available = models.BooleanField(default=True)
 
     def __str__(self):
-        return f'Car object ID = {self.name}'
+        return f'{self.name}'
+
+    class Meta:
+        ordering = ['name']
 
     @property
     def image_urls(self):
@@ -34,3 +37,8 @@ class Car(models.Model):
             image_urls += [static(image)]
 
         return image_urls
+
+#
+# class CarImage(models.Model):
+#     car = models.OneToOneField(Car, on_delete=models.CASCADE, related_name='image')
+#     photo = models.ImageField(blank=True, null=True)

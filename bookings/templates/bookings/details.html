@@ -5,8 +5,25 @@
 {% endblock %}
 
 {% block content %}
-    <body style="background-image: url(//localhost:8000/static/cars/images/wallpapers/win.jpg)">
-        <h2>Booking details</h2>
-    </body>
+
+<body style="background-image: url(//localhost:8000/static/cars/images/wallpapers/win.jpg)">
+    <div class="container" style="color: white">
+        <h2 style="color: white">Booking details</h2>
+        <br>
+                <p>Booking id: {{booking.id}}</p>
+                <p>Name: {{booking.user.first_name}} {{booking.user.last_name}}</p>
+                <p>Date and time reserved: {{booking.date}}</p>
+                <p>Car: {{booking.car}}</p>
+                    {% for image in booking.car.image_urls %}
+                        <img src="{{ image }}" alt="">
+                    {% endfor %}
+                <p>Circuit: {{booking.track}}</p>
+                    {% for image in booking.track.first_image_url %}
+                        <img src="{{ image }}" alt="" height="250px">
+                    {% endfor %}
+
+
+    </div>
+</body>
 
 {% endblock %}

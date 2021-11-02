@@ -6,7 +6,6 @@ from django.utils import timezone
 from django.contrib.auth.password_validation import validate_password, password_validators_help_text_html
 
 
-
 AuthUserModel = get_user_model()
 
 
@@ -73,4 +72,3 @@ class PasswordForm(forms.Form):
         self._user.activation.token = None
         self._user.activation.activated_at = timezone.now()
         self._user.activation.save()
-

@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from tracks.models import Track
+from bookings.models import Booking
 
 
 def show_all_tracks(request):
@@ -16,7 +17,13 @@ def show_all_tracks(request):
 
 def show_track_details(request, track_id):
     track = get_object_or_404(Track, pk=track_id)
+    bookings = Booking.objects.filter(track=track_id)
 
     return render(request, 'tracks/details.html', {
-        'track': track
+        'track': track,
+        'bookings': bookings,
     })
+
+#
+# def search_tracks(request):
+#     tracks = Track.objects.filter()
