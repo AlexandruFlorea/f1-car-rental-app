@@ -8,17 +8,21 @@ Key features - core:
 3. User registration - done
 4. Shopping cart / checkout
 5. Active rentals / Rental history
+6. Weather information - must show weather based on track location - url constructor method/search parameters
 
 
 Possible features:
 1. Weather information - must show weather based on track location - url constructor method/search parameters
 2. Internationalization and localization
 3. Detect user location and suggest the closest track
-4. Search function
+4. Global Search function
 5. Booking confirmation (email + pdf)
 6. Web scrapping from the F1 site (the latest news)
 7. About, contact
-8.
+8. Social networks authentication
+9. API (based on GraphQL)
+10. User stories (blog section)
+11.
 
 
 Feature description
@@ -65,6 +69,7 @@ Reservation - available fields
 11. Display messages (Django built-in) - done
 12. Categories and sorting
 13. Weather information - done
+14. Add, delete, update tracks and cars - by staff only
 
 
 ********** Questions ***********

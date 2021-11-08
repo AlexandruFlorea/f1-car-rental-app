@@ -1,0 +1,6 @@
+<a href="{% url 'bookings:show-checkout' %}">
+    {% comment %}
+        Cart ({{ request.session|dict_length:'cart' }})
+    {% endcomment %}
+        Cart ({{ items }})
+</a>

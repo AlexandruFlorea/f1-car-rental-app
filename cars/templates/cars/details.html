@@ -6,7 +6,11 @@
 
 {% block content %}
 <div class="container">
-    <h3>{{ car.name }}</h3>
+    <h3 class="main">{{ car.name }}</h3>
+    <br>
+    <a href="{% url 'cars:all' %}">
+        <button class="btn btn-primary">Back to list view</button>
+    </a>
     <div>
         <ul>
             {% for image in car.gallery_image_urls %}
@@ -15,14 +19,16 @@
         </ul>
     </div>
         <div class="container">
+            <p><strong>Category:</strong> {{ car.category.name }}</p>
             <p><strong>Team name:</strong> {{ car.name }}</p>
             <p><strong>Power unit:</strong> {{ car.power_unit }}</p>
             <p><strong>Handling: </strong>{{ car.handling }}/10</p>
             <p><strong>Rate:</strong> {{ car.rate }} EUR per session</p>
         </div>
+        {% if request.user.is_authenticated %}
         <div>
-            <h4>Bookings for this monopost: </h4>
-            {% for booking in bookings %}
+            <h4>Bookings so far: </h4>
+            {% for booking in car.bookings.all %}
                 <ul>
                     <li>
                         {{ booking }}
@@ -30,5 +36,6 @@
                 </ul>
             {% endfor %}
         </div>
+        {% endif %}
 </div>
 {% endblock %}

@@ -4,7 +4,7 @@
 {% block title %}
 <head>
     <title>F1 experience</title>
-
+    <link rel="icon" type="image/x-icon" href="{% static 'cars/images/logos/favicon.ico' %}">
 </head>
 {% endblock %}
 
@@ -21,7 +21,7 @@
             </div>
             <h4 style="color: white">Monthly favourites:</h4>
             <ul>
-               {% for favourite in favourites %}
+               {% for booking in favourites %}
                     <li style="margin-bottom: 10px;">
                         <strong>{{ favourite.name }}</strong>: {{ favourite.value }} rentals
                     </li>

@@ -31,7 +31,7 @@ class Profile(models.Model):
 
         return static('users/profile_images/default_image.jpg')
 
-#
-# class Cart(models.Model):
-#     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='cart')  # user.cart - gives access to a user's cart
-#     data = models.JSONField()
+
+class Cart(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='cart')  # user.cart - gives access to a user's cart
+    data = models.JSONField()

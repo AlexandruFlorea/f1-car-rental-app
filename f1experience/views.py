@@ -1,20 +1,12 @@
 from django.shortcuts import render
+from bookings.models import Booking
+
 
 def homepage_view(request):
-    return render(request, 'homepage.html', {
-        'title': 'Formula 1 experience',
-        'favourites': [{
-            'name': 'Mercedes AMG',
-            'value': '367'
-        }, {
-            'name': 'Ferrari',
-            'value': '333'
-        }, {
-            'name': 'McLaren',
-            'value': '270'
-        }, {
-            'name': 'RedBull Racing',
-            'value': '250'
-        }]
+    title = 'Formula 1 Experience'
+    bookings = Booking.objects.all()[:5]
 
+    return render(request, 'homepage.html', {
+        'title': title,
+        'bookings': bookings,
     })

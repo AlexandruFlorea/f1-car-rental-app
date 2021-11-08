@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.core.paginator import Paginator
+from django.contrib import messages
 from tracks.models import Track
-from bookings.models import Booking
+from utils.cart import Cart
 
 
 def show_all_tracks(request):
@@ -17,13 +18,28 @@ def show_all_tracks(request):
 
 def show_track_details(request, track_id):
     track = get_object_or_404(Track, pk=track_id)
-    bookings = Booking.objects.filter(track=track_id)
 
     return render(request, 'tracks/details.html', {
         'track': track,
-        'bookings': bookings,
     })
 
-#
-# def search_tracks(request):
-#     tracks = Track.objects.filter()
+
+def add_track_to_cart(request, track_id):
+    track = get_object_or_404(Track, pk=track_id)
+    cart = Cart(request)
+    cart.add(track_id)
+
+    messages.info(request, f'{track.name} added to your booking.')
+
+    print(request.session['cart'])
+    return redirect(reverse('bookings:show-checkout'))
+
+
+def remove_track_from_cart(request, track_id):
+    get_object_or_404(Track, pk=track_id)
+    cart = Cart(request)
+    cart.remove(track_id)
+
+    messages.success(request, 'Item removed.')
+
+    return redirect(reverse('bookings:show-checkout'))

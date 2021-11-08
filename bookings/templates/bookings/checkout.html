@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="main">
+        <div class="container">
+            <h4>Booking details</h4>
+            <br>
+            {% if car_items|length == 0 and track_items|length == 0 %}
+                <p>No booking details.</p>
+            {% else %}
+                <ul>
+                    {% for car_item in car_items %}
+                        <li>
+                            <p>Selected car: {{ car_item.car.name }}</p>
+                            {% for image in car_item.car.image_urls %}
+                                <img src="{{ image }}" alt="car_image" height="100px">
+                            {% endfor %}
+                               <form method="post" action="{% url 'bookings:remove_car_from_cart' car_item.car.id %}">
+                                    {% csrf_token %}
+                                    <input class="btn btn-danger" type="submit" value="Remove"/>
+                               </form>
+                        </li>
+                    {% endfor %}
+                    {% for track_item in track_items %}
+                        <li>
+                            <p>Selected track: {{ track_item.track.name }}</p>
+                            {% for image in track_item.track.first_image_url %}
+                                <img src="{{ image }}" alt="" height="180px">
+                            {% endfor %}
+                                <form method="post" action="{% url 'bookings:remove_track_from_cart' track_item.track.id %}">
+                                    {% csrf_token %}
+                                    <input class="btn btn-danger" type="submit" value="Remove"/>
+                                </form>
+                        </li>
+                    {% endfor %}
+
+                </ul>
+                <form action="" method="post">
+                    {% csrf_token %}
+<!--                    {{ form.as_p }}-->
+                    <input class="btn btn-primary" type="submit" value="Validate"/>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

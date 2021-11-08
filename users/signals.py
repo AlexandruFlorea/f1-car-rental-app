@@ -3,6 +3,7 @@ import secrets
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.contrib.auth import get_user_model
+from django.contrib.auth.signals import user_logged_in
 from users.models.details import Activation, Profile
 from users.email import send_activation_email
 
@@ -33,3 +34,8 @@ def create_activation(instance, created, **kwargs):
 def create_profile(instance, created, **kwargs):
     if created is True:
         Profile.objects.create(user=instance)
+
+
+# @receiver(user_logged_in)
+# def restore_cart_from_db(request, user, **kwargs):
+#     request.session['cart'] = json.loads(user.cart.data) if hasattr(user, 'cart') else {}

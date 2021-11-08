@@ -8,23 +8,26 @@
 {% block content %}
 <div style="color: white">
     <body style="background-image: url(//localhost:8000/static/cars/images/wallpapers/win.jpg)">
-    <h2 class="main" style="color: white">My bookings</h2>
-    <br>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
+    <h2 style="color: white">My bookings</h2>
+         <div class="pagination">
             {% if page_obj.paginator.num_pages > 1 %}
+                <span class="step-links">
                     {% if page_obj.has_previous %}
-                       <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
-                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a></li>
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
                     {% endif %}
-                        <li class="page-item disabled"><a class="page-link" href="#">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a></li>
+
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+
                     {% if page_obj.has_next %}
-                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a></li>
-                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></li>
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
                     {% endif %}
+                </span>
             {% endif %}
-        </ul>
-    </nav>
+        </div>
         <div style="color: white">
             {% for booking in page_obj %}
                 <ul>
@@ -36,7 +39,6 @@
 
             {% endfor %}
         </div>
-
     </body>
 </div>
 

@@ -20,6 +20,9 @@ class Track(models.Model):
     def __str__(self):
         return f'{self.name}'
 
+    class Meta:
+        ordering = ['id']
+
     @property
     def first_image_url(self):
 

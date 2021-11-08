@@ -6,43 +6,58 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
+<div class="container">
         <div>
-            <h2>Available circuits</h2>
+            <h2 class="main">Available circuits</h2>
+            <br>
+                {% if booking %}
+                    <h5>Select your circuit:</h5>
+                {% endif %}
         </div>
 
-        <div class="pagination">
-            {% if page_obj.paginator.num_pages > 1 %}
-                <span class="step-links">
-                    {% if page_obj.has_previous %}
-                        <a href="?page=1">&laquo; first</a>
-                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-                    {% endif %}
-
-                    <span class="current">
-                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                    </span>
-
-                    {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}">next</a>
-                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-                    {% endif %}
-                </span>
-            {% endif %}
-        </div>
-            <div>
-                <ul>
-                    {% for track in page_obj %}
-                        {% for image in track.gallery_image_urls %}
+    <nav aria-label="Page navigation example">
+    <ul class="pagination">
+        {% if page_obj.paginator.num_pages > 1 %}
+                {% if page_obj.has_previous %}
+                   <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a></li>
+                {% endif %}
+                    <li class="page-item disabled"><a class="page-link" href="#">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a></li>
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></li>
+                {% endif %}
+        {% endif %}
+    </ul>
+    </nav>
+        <div>
+            <ul>
+                {% for track in page_obj %}
+                    {% for image in track.gallery_image_urls %}
+                        {% if booking %}
                             <img src="{{ image }}" alt="" width="800">
-                        {% endfor %}
-                            <li style="margin-bottom: 10px;" class="col-12">
-                            <div>
-                                <strong>{{ track.name }}</strong>, located in {{ track.location }} <a href="{% url 'tracks:details' track.id %}">View details</a>
-                            </div>
-                        </li>
+                        {% else %}
+                            <a href="{% url 'tracks:details' track.id %}">
+                                <img src="{{ image }}" alt="" width="800">
+                            </a>
+                        {% endif %}
                     {% endfor %}
-                </ul>
-            </div>
-    </div>
+                        <li style="margin-bottom: 10px;" class="col-12">
+                        <div>
+                            <strong>{{ track.name }}</strong>, located in {{ track.location }}
+                            {% if booking %}
+                                <a href="{% url 'tracks:add_to_cart' track.id %}">
+                                    <button class="btn btn-info">Book this track</button>
+                                </a>
+                            {% else %}
+                                <a href="{% url 'tracks:details' track.id %}">
+                                    <button class="btn btn-secondary">Track details</button>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+</div>
 {% endblock %}

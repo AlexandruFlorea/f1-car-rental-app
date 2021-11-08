@@ -18,3 +18,10 @@ class BookingForm(forms.ModelForm):
             'date',
             'time',
         ]
+
+
+class BookingDateForm(forms.Form):
+    year = forms.ChoiceField(choices=())
+    month = forms.ChoiceField(choices=())
+    day = forms.ChoiceField(choices=())
+    time = forms.ChoiceField(choices=())

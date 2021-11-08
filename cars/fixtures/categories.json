@@ -1,0 +1,25 @@
+[{
+  "model": "cars.category",
+  "id": 1,
+  "fields": {
+    "name": "Ferrari powered"
+  }
+}, {
+  "model": "cars.category",
+  "id": 2,
+  "fields": {
+    "name": "Mercedes powered"
+  }
+}, {
+  "model": "cars.category",
+  "id": 3,
+  "fields": {
+    "name": "Honda powered"
+  }
+}, {
+  "model": "cars.category",
+  "id": 4,
+  "fields": {
+    "name": "Renault powered"
+  }
+}]

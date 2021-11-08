@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.utils.translation import gettext_lazy as _
 
 
-
 class AuthUserManager(BaseUserManager):  # Interfata pentru comunicare cu baza de date
     def create_user(self, email, first_name, last_name):
         user = self.model(
@@ -24,10 +23,11 @@ class AuthUserManager(BaseUserManager):  # Interfata pentru comunicare cu baza d
 
         return user
 
+
 class AuthUser(AbstractUser):
     username = None
     email = models.EmailField(_('email address'), null=False, blank=False, unique=True)
-    password = models.CharField(_('password'), max_length=128, blank=False,null=True, default='')
+    password = models.CharField(_('password'), max_length=128, blank=False, null=True, default='')
 
     USERNAME_FIELD = 'email'  # User identifier column
     REQUIRED_FIELDS = ['first_name', 'last_name']

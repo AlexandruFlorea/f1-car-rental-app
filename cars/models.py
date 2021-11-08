@@ -5,6 +5,10 @@ import json
 
 
 # Create your models here.
+class Category(models.Model):
+    name = models.CharField(max_length=128, null=False)
+
+
 class Car(models.Model):
     name = models.CharField(max_length=128, unique=True, null=False)
     power_unit = models.CharField(max_length=128, unique=False, null=False)
@@ -12,6 +16,7 @@ class Car(models.Model):
     handling = models.CharField(max_length=128, null=False)
     rate = models.IntegerField(default=1000)
     available = models.BooleanField(default=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, related_name='cars', null=True, default=None)
 
     def __str__(self):
         return f'{self.name}'
@@ -38,7 +43,14 @@ class Car(models.Model):
 
         return image_urls
 
-#
-# class CarImage(models.Model):
-#     car = models.OneToOneField(Car, on_delete=models.CASCADE, related_name='image')
-#     photo = models.ImageField(blank=True, null=True)
+    @property
+    def bookings(self):
+        queryset = Car.objects.filter(booking__name=self).count()
+
+        return queryset
+
+    # @property
+    # def get_last_booking(self):
+    #     latest_booking = Booking.objects.filter(car=self).order_by('-date').first()
+    #
+    #     return latest_booking
