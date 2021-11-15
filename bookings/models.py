@@ -5,10 +5,12 @@ from cars.models import Car
 from tracks.models import Track
 
 
-# Create your models here.
 class Booking(models.Model):
     name = models.CharField(max_length=128, null=False)
-    date = models.DateField(default=datetime.now)
+    date_created = models.DateTimeField(auto_now=True)
+    year = models.CharField(max_length=128, default=0)
+    month = models.CharField(max_length=128, default=0)
+    day = models.CharField(max_length=128, default=0)
     time = models.CharField(max_length=128, default=0)
     finished = models.BooleanField(default=False)
     canceled = models.BooleanField(default=False)
@@ -28,4 +30,4 @@ class Booking(models.Model):
             status = 'Active'
         elif self.paid and self.finished and not self.canceled:
             status = 'Finished'
-        return f'{self.user.first_name} {self.user.last_name} rent a {self.car}, on {self.track} - {self.track.location}, on {self.date} Status: {status}'
+        return f'{self.user.first_name} {self.user.last_name} rent a {self.car}, on {self.track} - {self.track.location}, on {self.date_created} Status: {status}'

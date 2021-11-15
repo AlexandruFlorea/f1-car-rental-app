@@ -13,7 +13,4 @@ class Command(BaseCommand):
 
         print(f'Updating a total of {len(users)} users.')
 
-        for user in users:
-            Profile.objects.create(
-                user=user,
-            )
+        [Profile.objects.create(user=user) for user in users]

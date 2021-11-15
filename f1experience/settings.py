@@ -34,12 +34,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django_extensions',
     'bookings.apps.BookingsConfig',
     'crispy_forms',
     'tracks.apps.TracksConfig',
     'cars.apps.CarsConfig',
     'users.apps.UsersConfig',
-    'django.contrib.admin',
+    'my_admin.apps.MyAdminConfig',
+    # 'django.contrib.admin',
+    'my_admin.apps.MyAdminSiteConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -171,3 +174,5 @@ MESSAGE_TAGS = {
         messages.WARNING: 'alert-warning',
         messages.ERROR: 'alert-danger',
  }
+
+LOGIN_REDIRECT_URL = 'users:profile'

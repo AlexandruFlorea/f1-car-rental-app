@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse, Http4
 from django.core.paginator import Paginator
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from bookings.models import Booking
 from bookings.forms import BookingForm, BookingDateForm
 from cars.models import Car
@@ -69,18 +70,12 @@ def create_booking_old(request):
     })
 
 
-def search_bookings(request):
-
-    return render(request, 'bookings/search_bookings.html', {})
-
-
 @login_required(login_url='/users/login/')
 def show_checkout(request):
     cart = request.session.get('cart', {})
     cars = Car.objects.filter(id__in=cart.keys())
     tracks = Track.objects.filter(id__in=cart.keys())
 
-    # cart_items = []
     car_items = [
         {
             'car': car,
@@ -88,32 +83,43 @@ def show_checkout(request):
         }
         for car in cars
     ]
+    track_items = [{'track': track} for track in tracks]
+    if request.method == 'GET':
+        form = BookingDateForm(request.user, car_items, track_items)
+    else:
+        form = BookingDateForm(request.user, car_items, track_items)
 
-    track_items = [
-        {
-            'track': track,
-        }
-        for track in tracks
-    ]
+        if form.is_valid():
+            form.track = tracks.first()
+            form.car = cars.first()
+            form.save()
+            messages.success(request, 'Booking created successfully!')
 
-    # cart_items.extend(car_item)
-    # cart_items.extend(track_item)
+            return redirect('/')
+        else:
+            print(form.errors)
+            print('Form is not valid!!!')
 
     return render(request, 'bookings/checkout.html', {
         'car_items': car_items,
         'track_items': track_items,
         'cart': cart,
-    })
-
-
-def booking_date(request):
-    form = BookingDateForm(request.POST)
-    if form.is_valid():
-        form = form.save(commit=False)
-        form.user = request.user
-        form.save()
-
-    return redirect(request, 'bookings/checkout.html', {
         'form': form,
-
     })
+
+
+def booking_complete(request):
+    return redirect(reverse('bookings:all'))
+
+
+# def booking_date(request):
+#     form = BookingDateForm(request.POST)
+#     if form.is_valid():
+#         form = form.save(commit=False)
+#         form.user = request.user
+#         form.save()
+#
+#     return redirect(request, 'bookings/checkout.html', {
+#         'form': form,
+#
+#     })

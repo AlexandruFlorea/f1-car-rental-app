@@ -11,10 +11,6 @@ class Track(models.Model):
     location = models.CharField(max_length=128, null=False)
     length = models.FloatField(default=0)
     available = models.BooleanField(default=True)
-    date_available_from = models.DateField(max_length=128, null=False, default=datetime.now)
-    date_available_until = models.DateField(max_length=128, null=False, default=datetime.now)
-    time_available_from = models.TimeField(max_length=128, null=False, default=datetime.now)
-    time_available_until = models.TimeField(max_length=128, null=False, default=datetime.now)
     weather_code = models.CharField(max_length=128, null=True, default='iasi_romania_675810')
 
     def __str__(self):
@@ -46,4 +42,11 @@ class Track(models.Model):
     #     date = models.DateTimeField()
     #     if date > self.available_to and date < self.available_from:
     #         return date
-    #
+
+
+class TrackAvailableDates(models.Model):
+    track = models.OneToOneField(Track, on_delete=models.CASCADE, related_name='dates')
+    year = models.CharField(max_length=128, default=0, null=True, blank=True)
+    month = models.CharField(max_length=128, default=0)
+    day = models.CharField(max_length=128, default=0, null=True, blank=True)
+    time = models.CharField(max_length=128, default=0, null=True, blank=True)

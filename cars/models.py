@@ -6,7 +6,13 @@ import json
 
 # Create your models here.
 class Category(models.Model):
+    class Meta:
+        verbose_name_plural = 'categories'
+
     name = models.CharField(max_length=128, null=False)
+
+    def __str__(self):
+        return self.name
 
 
 class Car(models.Model):
@@ -16,6 +22,7 @@ class Car(models.Model):
     handling = models.CharField(max_length=128, null=False)
     rate = models.IntegerField(default=1000)
     available = models.BooleanField(default=True)
+    color = models.CharField(max_length=24, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, related_name='cars', null=True, default=None)
 
     def __str__(self):

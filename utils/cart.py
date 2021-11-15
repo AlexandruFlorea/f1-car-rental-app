@@ -17,6 +17,9 @@ class Cart:
         else:
             CartModel.objects.create(user=self._user, data=json.dumps(self._data))
 
+    def _clear(self):
+        self._session['cart'] = {}
+
     def add(self, *args, **kwargs):
         quantity = 1
         for arg in args:
@@ -27,3 +30,4 @@ class Cart:
         for arg in args:
             del self._data[str(arg)]
             self._save()
+

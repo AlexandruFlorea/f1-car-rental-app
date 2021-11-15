@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
     <div class="main">
@@ -35,11 +36,15 @@
                     {% endfor %}
 
                 </ul>
-                <form action="" method="post">
-                    {% csrf_token %}
-<!--                    {{ form.as_p }}-->
-                    <input class="btn btn-primary" type="submit" value="Validate"/>
-                </form>
+                    <form method="post" id="id_form" class="mx-auto text-left">
+                        {% csrf_token %}
+                            <div class="row">
+                                {{ form|crispy }}
+                            </div>
+                        <button type="submit" class=" d-block btn btn-lg btn-success mt-4 w-50 mx-auto">
+                            Validate
+                        </button>
+                    </form>
             {% endif %}
         </div>
     </div>

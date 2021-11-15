@@ -5,11 +5,14 @@ from django.utils import timezone
 from utils.constants.activation import ACTIVATION_DICT
 
 
+def get_expires_at():
+    return timezone.now() + timezone.timedelta(**ACTIVATION_DICT)
+
 
 class Activation(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='activation')
     token = models.CharField(max_length=64, null=True, default=None, blank=False, unique=True)
-    expires_at = models.DateTimeField(default=timezone.now() + timezone.timedelta(**ACTIVATION_DICT))
+    expires_at = models.DateTimeField(default=get_expires_at)
     activated_at = models.DateTimeField(null=True, default=None, blank=False)
 
     def __str__(self):
