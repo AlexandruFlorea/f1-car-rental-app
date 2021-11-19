@@ -27,19 +27,18 @@ def show_track_details(request, track_id):
 def add_track_to_cart(request, track_id):
     track = get_object_or_404(Track, pk=track_id)
     cart = Cart(request)
-    cart.add(track_id)
+    cart.add_track(track_id)
 
     messages.info(request, f'{track.name} added to your booking.')
 
-    print(request.session['cart'])
     return redirect(reverse('bookings:show-checkout'))
 
 
 def remove_track_from_cart(request, track_id):
     get_object_or_404(Track, pk=track_id)
     cart = Cart(request)
-    cart.remove(track_id)
+    cart.remove_track()
 
-    messages.success(request, 'Item removed.')
+    messages.success(request, 'Track removed.')
 
     return redirect(reverse('bookings:show-checkout'))

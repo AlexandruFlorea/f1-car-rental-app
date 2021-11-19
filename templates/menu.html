@@ -2,6 +2,7 @@
 {% load cart %}
 
 <link rel="stylesheet" href="{% static 'styles/menu.css' %}">
+<link rel="stylesheet" href="{% static 'styles/form_inline.css' %}">
 
 <div class="topnav">
     <nav>
@@ -10,6 +11,7 @@
         <a href="{% url 'tracks:all' %}">Tracks</a>
         <a href="{% url 'bookings:create-old' %}">Old booking process</a>
         <a href="{% url 'bookings:create' %}">Start booking process</a>
+
         <div class="topnav-right">
             {% if request.user.is_authenticated %}
                 {% cart_link request.session %}
@@ -17,7 +19,7 @@
                 <a href="{% url 'users:profile' %}">My profile</a>
                 <a href="{% url 'users:profile' %}">Welcome, {{ user.first_name }}! <img src="{{ request.user.profile.image_url }}" width="20px"  alt="profile image"></a>
                 <a href="{% url 'users:logout' %}">Logout</a>
-                {% if request.user.is_superuser %}
+                {% if request.user.is_superuser or request.user.is_staff %}
                     <a href="{% url 'admin:index' %}">Admin</a>
                 {% endif %}
             {% else %}
@@ -26,5 +28,11 @@
                 <a href="{% url 'users:password_reset' %}">Forgot password?</a>
             {% endif %}
         </div>
+        <form class="d-flex" method="POST" action="{% url 'search' %}">
+            <input class="form-control me-2" type="text" name="q" value="{{request.POST.q}}" placeholder="Search site" required />
+            <button class="btn btn-secondary" type="submit">Search</button>
+
+            {% csrf_token %}
+        </form>
     </nav>
 </div>

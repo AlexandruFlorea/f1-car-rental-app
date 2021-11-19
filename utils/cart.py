@@ -20,14 +20,28 @@ class Cart:
     def _clear(self):
         self._session['cart'] = {}
 
-    def add(self, *args, **kwargs):
-        quantity = 1
-        for arg in args:
-            self._data[str(arg)] = str(quantity)
-            self._save()
+    # def add(self, *args, **kwargs):
+    #     for arg in args:
+    #         self._data[str(arg)] = str(arg)
+    #         self._save()
+    #
+    # def remove(self, *args, **kwargs):
+    #     for arg in args:
+    #         del self._data[str(arg)]
+    #         self._save()
 
-    def remove(self, *args, **kwargs):
-        for arg in args:
-            del self._data[str(arg)]
-            self._save()
+    def add_car(self, car_id):
+        self._data['car'] = car_id
+        self._save()
 
+    def remove_car(self):
+        del self._data['car']
+        self._save()
+
+    def add_track(self, track_id):
+        self._data['track'] = track_id
+        self._save()
+
+    def remove_track(self):
+        del self._data['track']
+        self._save()

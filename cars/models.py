@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.templatetags.static import static
+from django.conf import settings
 import json
 
 
@@ -24,6 +25,7 @@ class Car(models.Model):
     available = models.BooleanField(default=True)
     color = models.CharField(max_length=24, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, related_name='cars', null=True, default=None)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='cars', null=True, default=None)
 
     def __str__(self):
         return f'{self.name}'
@@ -51,8 +53,8 @@ class Car(models.Model):
         return image_urls
 
     @property
-    def bookings(self):
-        queryset = Car.objects.filter(booking__name=self).count()
+    def number_of_bookings(self):
+        queryset = Car.objects.filter(booking__car__name=self).count()
 
         return queryset
 

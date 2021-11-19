@@ -1,12 +1,61 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
+from django.db.models import Q
 from bookings.models import Booking
+from cars.models import Car
+from tracks.models import Track
 
 
 def homepage_view(request):
     title = 'Formula 1 Experience'
-    bookings = Booking.objects.all()[:5]
+    latest_bookings = Booking.objects.all().order_by('-date_created')[:5]
+    all_cars = Car.objects.all()
+    car_list = [
+        {
+            'car': car.name,
+            'car_bookings': car.bookings.count(),
+        }
+        for car in all_cars
+    ]
+    car_list_sorted = sorted(car_list, key=lambda car: car['car_bookings'], reverse=True)[:5]
+    dict_values = []
+    for item in car_list_sorted:
+        key = item.get('car')
+        value = item.get('car_bookings')
+        dict_values.append(tuple((key, value)))
+
+    top_5 = dict(dict_values)
 
     return render(request, 'homepage.html', {
         'title': title,
-        'bookings': bookings,
+        'latest_bookings': latest_bookings,
+        'top_5': top_5,
     })
+
+
+def search_site(request):
+    if request.method == 'POST':
+        query = request.POST.get('q')
+
+        if query:
+            cars = Car.objects.filter(Q(name__icontains=query)).distinct()
+            tracks = Track.objects.filter(Q(name__icontains=query) | Q(location__icontains=query)).distinct()
+            if request.user.is_authenticated:
+                bookings = request.user.bookings.filter(
+                    Q(date_created__icontains=query) | Q(user__email__icontains=query) | Q(car__name__icontains=query) |
+                    Q(track__name__icontains=query) | Q(track__location__icontains=query)
+                    ).distinct()
+
+                return render(request, 'search.html', {
+                    'query': query,
+                    'cars': cars,
+                    'tracks': tracks,
+                    'bookings': bookings,
+                })
+
+            return render(request, 'search.html', {
+                'query': query,
+                'cars': cars,
+                'tracks': tracks,
+            })
+
+    return redirect(reverse('homepage'))

@@ -15,7 +15,7 @@
     <div class="row" style="display: flex;">
         {% if not booking %}
             <div class="column" style="flex: 50%">
-                <form method="get" action="{% url 'cars:all' %}">
+                <form class="form-check form-check-inline" method="get" action="{% url 'cars:all' %}">
                     {{ form.as_p }}
                     <input type="submit" value="Apply filters" />
                 </form>
@@ -46,10 +46,10 @@
             <div class="col-12">
                 {% for image in car.image_urls %}
                     {% if booking %}
-                        <img src="{{ image }}" alt="Car details">
+                        <img src="{{ image }}" alt="Car details" width="432px">
                     {% else %}
                         <a href="{% url 'cars:details' car.id %}">
-                            <img src="{{ image }}" alt="Car details">
+                            <img src="{{ image }}" alt="Car details" width="432px">
                         </a>
                     {% endif %}
                 {% endfor %}

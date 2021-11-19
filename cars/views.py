@@ -32,7 +32,7 @@ def show_car_details(request, car_id):
 def add_car_to_cart(request, car_id):
     car = get_object_or_404(Car, pk=car_id)
     cart = Cart(request)
-    cart.add(car_id)
+    cart.add_car(car_id)
 
     messages.info(request, f'{car.name} added to your booking.')
 
@@ -50,8 +50,8 @@ def add_car_to_cart(request, car_id):
 def remove_car_from_cart(request, car_id):
     get_object_or_404(Car, pk=car_id)
     cart = Cart(request)
-    cart.remove(car_id)
+    cart.remove_car()
 
-    messages.success(request, 'Item removed.')
+    messages.success(request, 'Car removed.')
 
     return redirect(reverse('bookings:show-checkout'))

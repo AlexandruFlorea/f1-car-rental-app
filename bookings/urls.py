@@ -12,7 +12,6 @@ urlpatterns = [
     path('create_old/', create_booking_old, name='create-old'),
     path('create/', create_booking, name='create'),
     path('<int:booking_id>/', show_booking_details, name='details'),
-    # path('search_bookings/', search_bookings, name='search-bookings'),
     path('checkout/', show_checkout, name='show-checkout'),
     path('booking_complete/', booking_complete, name='booking_complete'),
     path('<int:car_id>/remove_car_from_cart/', remove_car_from_cart, name='remove_car_from_cart'),

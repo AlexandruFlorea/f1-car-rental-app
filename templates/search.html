@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="main">
+    {% if not cars and not tracks and not bookings %}
+        <h4>No results for "{{ query }}"</h4>
+    {% endif %}
+    {% if cars %}
+    <h3>Results for "{{ query }}" in Cars</h3>
+        {% for car in cars %}
+            <ul>
+                <li>
+                    {{ car.name }}
+                    {% for image in car.image_urls %}
+                        <a href="{% url 'cars:details' car.id %}">
+                            <img src="{{ image }}" alt="Car details" width="200px">
+                        </a>
+                    {% endfor %}
+                    <a href="{% url 'cars:details' car.id %}">
+                        <button class="btn btn-secondary">More details</button>
+                    </a>
+                </li>
+            </ul>
+        {% endfor %}
+    {% endif %}
+    {% if tracks %}
+    <h3>Results for "{{ query }}" in Tracks</h3>
+        {% for track in tracks %}
+            <ul>
+                <li>
+                    <strong>{{ track.name }}</strong>, located in {{ track.location }}
+                    {% for image in track.gallery_image_urls %}
+                        <a href="{% url 'tracks:details' track.id %}">
+                            <img src="{{ image }}" alt="Track details" width="150px">
+                        </a>
+                    {% endfor %}
+                    <a href="{% url 'tracks:details' track.id %}">
+                        <button class="btn btn-secondary">More details</button>
+                    </a>
+                </li>
+            </ul>
+        {% endfor %}
+    {% endif %}
+    {% if bookings %}
+    <h3>Results for "{{ query }}" in my Bookings</h3>
+        {% for booking in bookings %}
+            <ul>
+                <li>
+                    {{ booking }}
+                    <a href="{% url 'bookings:details' booking.id %}">
+                        <button class="btn btn-secondary">Order details</button>
+                    </a>
+                </li>
+            </ul>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock content %}
+

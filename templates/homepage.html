@@ -14,19 +14,28 @@
         <div style="color: white">
             <h2>
                 <img src="{% static 'cars/images/logos/F1-logo-red.png' %}" width="75"  alt=""/>
-                <span style="alignment: center">{{ title }}</span>
+                <span>{{ title }}</span>
             </h2>
-            <div>
-
+            <div class="container">
+                <h4 style="color: white">Most wanted:</h4>
+                <ul>
+                    {% for key, value in top_5.items %}
+                        <li style="margin-bottom: 10px;">
+                            <strong>{{ key }}</strong>: {{ value }} rentals
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div>
+                    <h5>Latest bookings</h5>
+                    <ul>
+                        {% for booking in latest_bookings %}
+                            <li>
+                                {{ booking.id }} - {{ booking.car }} - {{ booking.track }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
-            <h4 style="color: white">Monthly favourites:</h4>
-            <ul>
-               {% for booking in favourites %}
-                    <li style="margin-bottom: 10px;">
-                        <strong>{{ favourite.name }}</strong>: {{ favourite.value }} rentals
-                    </li>
-                {% endfor %}
-            </ul>
         </div>
     </body>
 </div>

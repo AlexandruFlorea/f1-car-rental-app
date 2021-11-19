@@ -10,6 +10,14 @@
     <body style="background-image: url(//localhost:8000/static/cars/images/wallpapers/win.jpg)">
     <h2 class="main" style="color: white">My bookings</h2>
     <br>
+        <form method="POST" action="{% url 'bookings:all' %}">
+            <input type="text" name="q" value="{{request.POST.q}}" placeholder="Search bookings"/>
+            <button class="btn btn-secondary" type="submit">Search</button>
+
+            {% csrf_token %}
+        </form>
+    <br>
+    <br>
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             {% if page_obj.paginator.num_pages > 1 %}
@@ -29,7 +37,7 @@
             {% for booking in page_obj %}
                 <ul>
                     <li style="background: black" >
-                        {{booking}}
+                        {{ booking }}
                         <a href="{% url 'bookings:details' booking.id %}">Order details</a>
                     </li>
                 </ul>

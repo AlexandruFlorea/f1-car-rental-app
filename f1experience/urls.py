@@ -15,16 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from f1experience.views import homepage_view
 from django.conf.urls.static import static
 from django.conf import settings
-
+from f1experience.views import homepage_view, search_site
 
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('admin/', include('my_admin.urls')),
-    path('', homepage_view),
+    path('admin/', include('my_admin.urls')),  # my custom admin site
+    path('', homepage_view, name='homepage'),
+    path('search/', search_site, name='search'),
     path('cars/', include('cars.urls')),
     path('users/', include('users.urls')),
     path('tracks/', include('tracks.urls')),

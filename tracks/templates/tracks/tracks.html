@@ -35,10 +35,10 @@
                 {% for track in page_obj %}
                     {% for image in track.gallery_image_urls %}
                         {% if booking %}
-                            <img src="{{ image }}" alt="" width="800">
+                            <img src="{{ image }}" alt="" width="500">
                         {% else %}
                             <a href="{% url 'tracks:details' track.id %}">
-                                <img src="{{ image }}" alt="" width="800">
+                                <img src="{{ image }}" alt="" width="500">
                             </a>
                         {% endif %}
                     {% endfor %}
