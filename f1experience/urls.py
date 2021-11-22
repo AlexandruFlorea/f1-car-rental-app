@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from django.contrib.auth import views as auth_views
 from f1experience.views import homepage_view, search_site
 
 
@@ -29,7 +30,10 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('tracks/', include('tracks.urls')),
     path('bookings/', include('bookings.urls')),
-
+    # path('', include('django.contrib.auth.urls')),
+    path('reset/done/',
+         auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'),
+         name='password_reset_complete'),  # just has to be here, for password reset to work properly
 ]
 
 if settings.DEBUG is True:

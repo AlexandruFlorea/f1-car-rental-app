@@ -175,4 +175,5 @@ MESSAGE_TAGS = {
         messages.ERROR: 'alert-danger',
  }
 
+LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'users:profile'
