@@ -12,7 +12,7 @@
                 <ul>
                     {% if car %}
                         <li>
-                            <p>Selected car: {{ car.name }}</p>
+                            <p>Selected car: <strong>{{ car.name }}</strong></p>
                             {% for image in car.image_urls %}
                                 <img src="{{ image }}" alt="car_image" height="100px">
                             {% endfor %}
@@ -25,7 +25,7 @@
                         </li>
                     {% if track %}
                         <li>
-                            <p>Selected track: {{ track.name }}</p>
+                            <p>Selected track: <strong>{{ track.name }}</strong> - {{ track.location }}</p>
                             {% for image in track.first_image_url %}
                                 <img src="{{ image }}" alt="" height="180px">
                             {% endfor %}
@@ -33,16 +33,17 @@
                                     {% csrf_token %}
                                     <input class="btn btn-danger" type="submit" value="Remove"/>
                                 </form>
+                            <p>Booking date: <strong>{{ track.race_day }}</strong></p>
+                            <p>Total cost: <strong>{{ car.rate }} EUR/session</strong></p>
                         </li>
                     {% endif %}
                 </ul>
+            <br>
+
                     <form method="post" id="id_form" class="mx-auto text-left">
                         {% csrf_token %}
-                            <div class="row">
-                                {{ form|crispy }}
-                            </div>
                         <button type="submit" class=" d-block btn btn-lg btn-success mt-4 w-50 mx-auto">
-                            Validate
+                            Confirm booking
                         </button>
                     </form>
             {% endif %}

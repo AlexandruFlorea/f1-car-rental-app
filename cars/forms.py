@@ -1,6 +1,5 @@
 from django import forms
 from cars.models import Category, Car
-from bookings.models import Booking
 
 
 ORDER_BY_CHOICES = (('POPULARITY', 'Popularity'), ('PRICE_ASC', 'Price ascending'), ('PRICE_DESC', 'Price descending'))

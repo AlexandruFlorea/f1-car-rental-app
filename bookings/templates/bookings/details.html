@@ -13,6 +13,7 @@
             <p>Booking id: {{booking.id}}</p>
             <p>Name: {{booking.user.first_name}} {{booking.user.last_name}}</p>
             <p>Date and time reserved: {{booking.date}}</p>
+            <p>Total cost: {{booking.cost}} EUR</p>
             <p>Car: {{booking.car}}</p>
                 {% for image in booking.car.image_urls %}
                     <img src="{{ image }}" alt="">

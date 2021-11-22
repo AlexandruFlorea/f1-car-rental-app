@@ -63,19 +63,18 @@ Reservation - available fields
 5. Registration - done
 6. Login - done
 7. Profile - done
-8. Password reset - almost
+8. Password reset - done
 9. Static & media files - done
 10. Booking process - it's fucked
 11. Display messages (Django built-in) - done
-12. Categories and sorting
+12. Categories and sorting - done
 13. Weather information - done
-14. Add, delete, update tracks and cars - by staff only
+14. Add, delete, update tracks and cars - by staff only - done
+15. Global Search function - done
 
 
 ********** Questions ***********
 1.
-2. Pot sa afisez imagini in formularul de rezervare?
-3. Validators file? Signals for availability check?
-4. Tabel cu available dates/hours?
+
 
 
