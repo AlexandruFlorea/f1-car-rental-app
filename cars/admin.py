@@ -20,7 +20,7 @@ class CarAdmin(admin.ModelAdmin):
     team_color.admin_order_field = 'team_color'
 
     list_display = ['name', 'power_unit', 'races_won', 'handling', 'rate',
-                    'available', 'category', 'team_color', 'owner']
+                    'available', 'category', 'team_color', 'number_of_bookings', 'number_of_active_bookings', 'owner']
     search_fields = ['name', 'power_unit', 'available', 'category__name', ]
     ordering = ['name', '-rate']
 

@@ -10,19 +10,6 @@
                 <p>No booking details.</p>
             {% else %}
                 <ul>
-                    {% if car %}
-                        <li>
-                            <p>Selected car: <strong>{{ car.name }}</strong></p>
-                            {% for image in car.image_urls %}
-                                <img src="{{ image }}" alt="car_image" height="100px">
-                            {% endfor %}
-
-                               <form method="post" action="{% url 'bookings:remove_car_from_cart' car.id %}">
-                                    {% csrf_token %}
-                                    <input class="btn btn-danger" type="submit" value="Remove"/>
-                               </form>
-                    {% endif %}
-                        </li>
                     {% if track %}
                         <li>
                             <p>Selected track: <strong>{{ track.name }}</strong> - {{ track.location }}</p>
@@ -37,6 +24,21 @@
                             <p>Total cost: <strong>{{ car.rate }} EUR/session</strong></p>
                         </li>
                     {% endif %}
+
+                    {% if car %}
+                        <li>
+                            <p>Selected car: <strong>{{ car.name }}</strong></p>
+                            {% for image in car.image_urls %}
+                                <img src="{{ image }}" alt="car_image" height="100px">
+                            {% endfor %}
+
+                               <form method="post" action="{% url 'bookings:remove_car_from_cart' car.id %}">
+                                    {% csrf_token %}
+                                    <input class="btn btn-danger" type="submit" value="Remove"/>
+                               </form>
+                        </li>
+                    {% endif %}
+
                 </ul>
             <br>
 

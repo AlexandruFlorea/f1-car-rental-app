@@ -3,6 +3,7 @@ from django.utils.text import slugify
 from django.templatetags.static import static
 from django.conf import settings
 import json
+from django.db.models import Q
 
 
 # Create your models here.
@@ -54,9 +55,15 @@ class Car(models.Model):
 
     @property
     def number_of_bookings(self):
-        queryset = Car.objects.filter(booking__car__name=self).count()
+        bookings = Car.objects.filter(bookings__car=self).count()
 
-        return queryset
+        return bookings
+
+    @property
+    def number_of_active_bookings(self):
+        bookings = Car.objects.filter(Q(bookings__car=self), Q(bookings__canceled=False)).count()
+
+        return bookings
 
     # @property
     # def get_last_booking(self):

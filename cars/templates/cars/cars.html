@@ -21,7 +21,7 @@
                 </form>
             </div>
         {% else %}
-            <h4>Select the desired car and click on the "Book now" button:</h4>
+            <h4>Select the desired team and click on the "Book now" button:</h4>
         {% endif %}
     </div>
      <nav aria-label="Page navigation example">
@@ -62,9 +62,15 @@
                         Rate: {{ car.rate }} EUR per session
 
                         {% if booking %}
-                            <a href="{% url 'cars:add_to_cart' car.id %}">
-                                <button class="btn btn-info">Book this car</button>
-                            </a>
+                            {% if car.available %}
+                                <a href="{% url 'bookings:add_car_to_cart' car.id %}">
+                                    <button class="btn btn-info">Book this car</button>
+                                </a>
+                            {% else %}
+                                <a href="">
+                                    <button class="btn btn-warning">Fully booked!</button>
+                                </a>
+                            {% endif %}
                         {% else %}
                             <a href="{% url 'cars:details' car.id %}">
                                 <button class="btn btn-secondary">More details</button>

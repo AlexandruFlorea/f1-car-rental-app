@@ -46,7 +46,7 @@
                         <div>
                             <strong>{{ track.name }}</strong>, located in {{ track.location }}
                             {% if booking %}
-                                <a href="{% url 'tracks:add_to_cart' track.id %}">
+                                <a href="{% url 'bookings:add_track_to_cart' track.id %}">
                                     <button class="btn btn-info">Book this track</button>
                                 </a>
                             {% else %}

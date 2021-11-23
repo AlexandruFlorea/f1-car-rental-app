@@ -7,7 +7,7 @@ from tracks.models import Track
 
 def homepage_view(request):
     title = 'Formula 1 Experience'
-    latest_bookings = Booking.objects.all().order_by('-date_created')[:5]
+    latest_bookings = Booking.objects.all().order_by('-id')[:5]
     all_cars = Car.objects.all()
     car_list = [
         {

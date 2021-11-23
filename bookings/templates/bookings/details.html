@@ -11,18 +11,22 @@
         <h2 style="color: white">Booking details</h2>
         <br>
             <p>Booking id: {{booking.id}}</p>
-            <p>Name: {{booking.user.first_name}} {{booking.user.last_name}}</p>
-            <p>Date and time reserved: {{booking.date}}</p>
-            <p>Total cost: {{booking.cost}} EUR</p>
-            <p>Car: {{booking.car}}</p>
+            <p>Canceled: {{ booking.canceled }}</p>
+            <p>Name: {{ booking.user.first_name }} {{ booking.user.last_name }}</p>
+            <p>Date and time reserved: {{ booking.date }}</p>
+            <p>Total cost: {{ booking.cost }} EUR</p>
+            <p>Car: {{ booking.car }}</p>
                 {% for image in booking.car.image_urls %}
-                    <img src="{{ image }}" alt="">
+                    <img src="{{ image }}" alt="" width="400px">
                 {% endfor %}
-            <p>Circuit: {{booking.track}}</p>
+            <p>Circuit: {{ booking.track }}</p>
                 {% for image in booking.track.first_image_url %}
                     <img src="{{ image }}" alt="" height="250px">
                 {% endfor %}
-
+                <form method="post" action="{% url 'bookings:cancel_booking' booking.id %}">
+                    {% csrf_token %}
+                    <input class="btn btn-danger" type="submit" value="Cancel booking"/>
+                </form>
 
     </div>
 </body>

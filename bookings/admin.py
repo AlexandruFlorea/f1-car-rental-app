@@ -11,7 +11,7 @@ class BookingAdmin(admin.ModelAdmin):
     def generate_report(self, request, queryset):
         print('Generate report stuff stuff')
 
-    list_display = ['id', 'date_created', 'paid', 'user', 'car', 'track']
+    list_display = ['id', 'user', 'car', 'track', 'date', 'cost', 'date_created', 'paid', 'canceled']
     search_fields = ['date_created', 'paid', 'user__email', 'car__name', 'track__name']
     list_filter = ['paid', 'date_created', 'car', 'track']
     actions = [generate_report]

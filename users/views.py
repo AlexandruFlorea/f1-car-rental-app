@@ -1,4 +1,4 @@
-from django.shortcuts import reverse, get_object_or_404, resolve_url
+from django.shortcuts import reverse, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -13,13 +13,11 @@ from django.shortcuts import render, redirect
 from django.core.mail import EmailMultiAlternatives
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth import get_user_model
-from django.contrib.auth.views import PasswordContextMixin, TemplateView
 from django.template.loader import get_template
 from django.db.models.query_utils import Q
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
-from django.utils.translation import gettext_lazy as _
 
 
 AuthUserModel = get_user_model()
@@ -41,6 +39,7 @@ def login_user(request):
         else:
             login(request, user)
             messages.success(request, 'You have successfully logged in.')
+
             return redirect('/')
 
     return render(request, 'users/login.html', {})
@@ -149,12 +148,13 @@ def password_reset_request(request):
                     )
                     email.content_subtype = 'html'
                     email.send()
-
                     messages.success(request, 'A message with reset password instructions has been sent to your inbox.')
 
                     return redirect('done/')
+
                 messages.error(request, 'An invalid email has been entered.')
 
     password_reset_form = PasswordResetForm()
+
     return render(request=request, template_name='users/password_reset.html',
                   context={'password_reset_form': password_reset_form})

@@ -1,10 +1,10 @@
-from django.shortcuts import render, get_object_or_404, redirect, reverse, Http404, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, redirect, Http404, reverse
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
 from bookings.models import Booking
-from bookings.forms import BookingDateForm
+from utils.cart import Cart
 from cars.models import Car
 from tracks.models import Track
 
@@ -49,80 +49,14 @@ def show_booking_details(request, booking_id):
 @login_required(login_url='/users/login/')
 def create_booking(request):
     booking = True
-    cars = Car.objects.all()
-    paginator = Paginator(cars, 4)  # Objects on the page
+    tracks = Track.objects.all()
+    paginator = Paginator(tracks, 4)  # Objects on the page
     page_obj = paginator.get_page(request.GET.get('page', 1))
 
-    return render(request, 'cars/cars.html', {
+    return render(request, 'tracks/tracks.html', {
         'page_obj': page_obj,
         'booking': booking,
     })
-
-
-@login_required(login_url='/users/login/')
-def create_booking_old(request):
-#     submitted = False
-#     if request.method == 'POST':
-#         form = BookingForm(request.POST)
-#         if form.is_valid():
-#             form = form.save(commit=False)
-#             form.user = request.user
-#             print(request.POST.get('car'))
-#             form.save()
-#             messages.success(request, 'Booking created successfully!')
-#
-#             return HttpResponseRedirect('/bookings/create_old?submitted=True')
-#     else:
-#         form = BookingForm()
-#         if 'submitted' in request.GET:
-#             submitted = True
-#
-#     return render(request, 'bookings/create_booking_old.html', {
-#         'form': form,
-#         'submitted': submitted,
-#
-#     })
-    pass
-
-
-# @login_required(login_url='/users/login/')
-# def show_checkout(request):
-#     cart = request.session.get('cart', {})  # get cart or create an empty one
-#     car = Car.objects.filter(id__in=cart.values()).first()
-#     track = Track.objects.filter(id__in=cart.values()).first()
-#     date = track.race_day
-#     cost = car.rate
-#     user = request.user
-#
-#     if request.method == 'GET':
-#         form = BookingDateForm(user, car, track, date, cost,)
-#     else:
-#         form = BookingDateForm(user, car, track, date, cost, request.POST)
-#         if form.is_valid():
-#             form.user = user
-#             form.car = car
-#             form.track = track
-#             form.date = date
-#             form.cost = cost
-#             form.save()
-#
-#             messages.success(request, 'Booking created successfully!')
-#             request.session['cart'] = {}
-#
-#             return redirect('/')
-#
-#         else:
-#             print('Form not valid!!!!!!!')
-#
-#
-#             return redirect('/')
-#
-#     return render(request, 'bookings/checkout.html', {
-#         'car': car,
-#         'track': track,
-#         'cart': cart,
-#         'form': form,
-#     })
 
 
 @login_required(login_url='/users/login/')
@@ -139,9 +73,77 @@ def show_checkout(request):
         messages.success(request, 'Booking created successfully!')
         request.session['cart'] = {}
 
+        # # Control car availability
+        # if car.number_of_bookings >= 5:
+        #     car.available = False
+        #     car.save()
+
         return redirect('/')
 
     return render(request, 'bookings/checkout.html', {
         'car': car,
         'track': track,
     })
+
+
+@login_required(login_url='/users/login/')
+def cancel_booking(request, booking_id):
+    booking = get_object_or_404(Booking, pk=booking_id)
+    booking.canceled = True
+    booking.save()
+
+    messages.success(request, 'Booking cancelled successfully!')
+
+    # if booking.car.number_of_bookings < 5:
+    #     booking.car.available = True
+    #     booking.car.save()
+
+    return redirect(reverse('bookings:all'))
+
+
+def add_car_to_cart(request, car_id):
+    car = get_object_or_404(Car, pk=car_id)
+    cart = Cart(request)
+    cart.add_car(car_id)
+
+    messages.info(request, f'{car.name} added to your booking.')
+
+    return redirect(reverse('bookings:show_checkout'))
+
+
+def remove_car_from_cart(request, car_id):
+    get_object_or_404(Car, pk=car_id)
+    cart = Cart(request)
+    cart.remove_car()
+
+    messages.success(request, 'Car removed.')
+
+    return redirect(reverse('bookings:show_checkout'))
+
+
+def add_track_to_cart(request, track_id):
+    track = get_object_or_404(Track, pk=track_id)
+    cart = Cart(request)
+    cart.add_track(track_id)
+
+    messages.info(request, f'{track.name} added to your booking.')
+
+    booking = True  # to differentiate between normal view and booking process view
+    cars = Car.objects.all()
+    paginator = Paginator(cars, 3)
+    page_obj = paginator.get_page(request.GET.get('page', 1))  # Objects on the page
+
+    return render(request, 'cars/cars.html', {
+        'page_obj': page_obj,
+        'booking': booking,
+    })
+
+
+def remove_track_from_cart(request, track_id):
+    get_object_or_404(Track, pk=track_id)
+    cart = Cart(request)
+    cart.remove_track()
+
+    messages.success(request, 'Track removed.')
+
+    return redirect(reverse('bookings:show_checkout'))
