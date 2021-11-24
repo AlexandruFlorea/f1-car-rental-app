@@ -3,6 +3,7 @@ from django.db.models import Q
 from bookings.models import Booking
 from cars.models import Car
 from tracks.models import Track
+from .random_facts import get_fact
 
 
 def homepage_view(request):
@@ -25,10 +26,13 @@ def homepage_view(request):
 
     top_5 = dict(dict_values)
 
+    random_fact = get_fact()
+
     return render(request, 'homepage.html', {
         'title': title,
         'latest_bookings': latest_bookings,
         'top_5': top_5,
+        'random_fact': random_fact,
     })
 
 

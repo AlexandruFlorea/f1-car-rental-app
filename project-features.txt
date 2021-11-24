@@ -65,12 +65,14 @@ Reservation - available fields
 7. Profile - done
 8. Password reset - done
 9. Static & media files - done
-10. Booking process - it's fucked
+10. Booking process - done
 11. Display messages (Django built-in) - done
 12. Categories and sorting - done
 13. Weather information - done
 14. Add, delete, update tracks and cars - by staff only - done
 15. Global Search function - done
+16. Custom commands - done
+17.
 
 
 ********** Questions ***********

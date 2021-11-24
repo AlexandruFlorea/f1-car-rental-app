@@ -23,11 +23,12 @@
                 {% for image in booking.track.first_image_url %}
                     <img src="{{ image }}" alt="" height="250px">
                 {% endfor %}
+                {% if not booking.canceled %}
                 <form method="post" action="{% url 'bookings:cancel_booking' booking.id %}">
                     {% csrf_token %}
                     <input class="btn btn-danger" type="submit" value="Cancel booking"/>
                 </form>
-
+                {% endif %}
     </div>
 </body>
 

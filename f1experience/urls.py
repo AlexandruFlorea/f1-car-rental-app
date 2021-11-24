@@ -30,7 +30,6 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('tracks/', include('tracks.urls')),
     path('bookings/', include('bookings.urls')),
-    # path('', include('django.contrib.auth.urls')),
     path('reset/done/',
          auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'),
          name='password_reset_complete'),  # just has to be here, for password reset to work properly

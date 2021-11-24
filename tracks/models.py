@@ -1,7 +1,8 @@
+import json
 from django.db import models
+from django.db.models import Q
 from django.utils import timezone
 from django.templatetags.static import static
-import json
 
 
 class Track(models.Model):
@@ -36,13 +37,14 @@ class Track(models.Model):
 
         return image_urls
 
+    @property
+    def number_of_bookings(self):
+        bookings = Track.objects.filter(bookings__track=self).count()
 
-# class TrackAvailableDates(models.Model):
-#     track = models.OneToOneField(Track, on_delete=models.CASCADE, related_name='dates')
-#     year = models.CharField(max_length=128, default=0, null=True, blank=True)
-#     month = models.CharField(max_length=128, default=0)
-#     day = models.CharField(max_length=128, default=0, null=True, blank=True)
-#     time = models.CharField(max_length=128, default=0, null=True, blank=True)
-#
-#     def __str__(self):
-#         return f'{self.year}-{self.month}-{self.day}'
+        return bookings
+
+    @property
+    def number_of_active_bookings(self):
+        bookings = Track.objects.filter(Q(bookings__track=self), Q(bookings__canceled=False)).count()
+
+        return bookings

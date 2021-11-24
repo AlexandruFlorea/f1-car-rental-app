@@ -46,7 +46,7 @@
             <div class="col-12">
                 {% for image in car.image_urls %}
                     {% if booking %}
-                        <img src="{{ image }}" alt="Car details" width="432px">
+                        <img src="{{ image }}" alt="Car image" width="432px">
                     {% else %}
                         <a href="{% url 'cars:details' car.id %}">
                             <img src="{{ image }}" alt="Car details" width="432px">
@@ -62,7 +62,7 @@
                         Rate: {{ car.rate }} EUR per session
 
                         {% if booking %}
-                            {% if car.available %}
+                            {% if car in available_cars %}
                                 <a href="{% url 'bookings:add_car_to_cart' car.id %}">
                                     <button class="btn btn-info">Book this car</button>
                                 </a>

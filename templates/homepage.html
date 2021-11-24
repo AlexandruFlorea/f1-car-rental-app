@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% include 'random_fact.html' %}
 
 {% block title %}
 <head>
@@ -20,7 +21,7 @@
                 <h4 style="color: white">Most wanted:</h4>
                 <ul>
                     {% for key, value in top_5.items %}
-                        <li style="margin-bottom: 10px;">
+                        <li style="margin-bottom: 0px;">
                             <strong>{{ key }}</strong>: {{ value }} rentals
                         </li>
                     {% endfor %}
@@ -34,6 +35,14 @@
                             </li>
                         {% endfor %}
                     </ul>
+                </div>
+                {% block random_fact %}
+
+                    <p><strong>Random F1 fact:</strong> {{ random_fact }}</p>
+                {% endblock random_fact %}
+                <div>
+                    <h5>Wanna see what it's like for an amateur to drive an F1 car?</h5>
+                    <iframe width="650" height="350" src="https://www.youtube.com/embed/kEP9R-osh7o" title="YouTube video player" frameborder="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </div>

@@ -9,45 +9,39 @@
             {% if not car and not track %}
                 <p>No booking details.</p>
             {% else %}
-                <ul>
-                    {% if track %}
-                        <li>
-                            <p>Selected track: <strong>{{ track.name }}</strong> - {{ track.location }}</p>
-                            {% for image in track.first_image_url %}
-                                <img src="{{ image }}" alt="" height="180px">
-                            {% endfor %}
-                                <form method="post" action="{% url 'bookings:remove_track_from_cart' track.id %}">
-                                    {% csrf_token %}
-                                    <input class="btn btn-danger" type="submit" value="Remove"/>
-                                </form>
-                            <p>Booking date: <strong>{{ track.race_day }}</strong></p>
-                            <p>Total cost: <strong>{{ car.rate }} EUR/session</strong></p>
-                        </li>
-                    {% endif %}
+                {% if track %}
+                    <p>Selected track: <strong>{{ track.name }}</strong> - {{ track.location }}</p>
+                    {% for image in track.first_image_url %}
+                        <img src="{{ image }}" alt="" height="180px">
+                    {% endfor %}
+                        <form method="post" action="{% url 'bookings:remove_track_from_cart' track.id %}">
+                            {% csrf_token %}
+                            <input class="btn btn-danger" type="submit" value="Remove"/>
+                        </form>
+                    <p>Booking date: <strong>{{ track.race_day }}</strong></p>
+                {% endif %}
 
-                    {% if car %}
-                        <li>
-                            <p>Selected car: <strong>{{ car.name }}</strong></p>
-                            {% for image in car.image_urls %}
-                                <img src="{{ image }}" alt="car_image" height="100px">
-                            {% endfor %}
+                {% if car %}
+                    <p>Total cost: <strong>{{ car.rate }} EUR/session</strong></p>
+                    <p>Selected car: <strong>{{ car.name }}</strong></p>
+                    {% for image in car.image_urls %}
+                        <img src="{{ image }}" alt="car_image" height="100px">
+                    {% endfor %}
 
-                               <form method="post" action="{% url 'bookings:remove_car_from_cart' car.id %}">
-                                    {% csrf_token %}
-                                    <input class="btn btn-danger" type="submit" value="Remove"/>
-                               </form>
-                        </li>
-                    {% endif %}
-
-                </ul>
+                       <form method="post" action="{% url 'bookings:remove_car_from_cart' car.id %}">
+                            {% csrf_token %}
+                            <input class="btn btn-danger" type="submit" value="Remove"/>
+                       </form>
+                {% endif %}
             <br>
-
+                {% if car and track %}
                     <form method="post" id="id_form" class="mx-auto text-left">
                         {% csrf_token %}
                         <button type="submit" class=" d-block btn btn-lg btn-success mt-4 w-50 mx-auto">
                             Confirm booking
                         </button>
                     </form>
+                {% endif %}
             {% endif %}
         </div>
     </div>

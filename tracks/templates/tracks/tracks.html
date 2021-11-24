@@ -46,9 +46,15 @@
                         <div>
                             <strong>{{ track.name }}</strong>, located in {{ track.location }}
                             {% if booking %}
+                                {% if track.available %}
                                 <a href="{% url 'bookings:add_track_to_cart' track.id %}">
                                     <button class="btn btn-info">Book this track</button>
                                 </a>
+                                {% else %}
+                                    <a href="">
+                                        <button class="btn btn-warning">Fully booked!</button>
+                                    </a>
+                                {% endif %}
                             {% else %}
                                 <a href="{% url 'tracks:details' track.id %}">
                                     <button class="btn btn-secondary">Track details</button>
