@@ -47,7 +47,7 @@
         {% for booking in bookings %}
             <ul>
                 <li>
-                    {{ booking }}
+                    {{ booking.booking_number }} - {{ booking.track }} - {{ booking.car }} - {{ booking.date }} - {{ booking.status }}
                     <a href="{% url 'bookings:details' booking.id %}">
                         <button class="btn btn-secondary">Order details</button>
                     </a>

@@ -45,8 +45,10 @@ def search_site(request):
             tracks = Track.objects.filter(Q(name__icontains=query) | Q(location__icontains=query)).distinct()
             if request.user.is_authenticated:
                 bookings = request.user.bookings.filter(
-                    Q(date_created__icontains=query) | Q(user__email__icontains=query) | Q(car__name__icontains=query) |
-                    Q(track__name__icontains=query) | Q(track__location__icontains=query)
+                    Q(date__icontains=query) | Q(user__email__icontains=query) | Q(car__name__icontains=query) |
+                    Q(track__name__icontains=query) | Q(track__location__icontains=query) |
+                    Q(date_created__year__icontains=query) | Q(date_created__month__icontains=query) |
+                    Q(date_created__day__icontains=query) | Q(booking_number__icontains=query)
                     ).distinct()
 
                 return render(request, 'search.html', {

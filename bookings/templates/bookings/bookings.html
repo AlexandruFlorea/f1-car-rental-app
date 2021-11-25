@@ -6,7 +6,15 @@
 {% endblock %}
 
 {% block content %}
-<div style="color: white">
+<style>
+    table, th, td {
+      border: 1px solid white;
+      border-collapse: collapse;
+    }
+    th, td {
+      background-color: #ffffff;
+    }
+</style>-
     <body style="background-image: url(//localhost:8000/static/cars/images/wallpapers/win.jpg)">
     <h2 class="main" style="color: white">My bookings</h2>
     <br>
@@ -16,7 +24,6 @@
 
             {% csrf_token %}
         </form>
-    <br>
     <br>
     <nav aria-label="Page navigation example">
         <ul class="pagination">
@@ -33,19 +40,37 @@
             {% endif %}
         </ul>
     </nav>
-        <div style="color: white">
-            {% for booking in page_obj %}
-                <ul>
-                    <li style="background: black" >
-                        {{ booking }}
-                        <a href="{% url 'bookings:details' booking.id %}">Order details</a>
-                    </li>
-                </ul>
+        <div>
 
+            <table style="width:60%;">
+                <tr>
+                    <th>Booking number</th>
+                    <th>Track</th>
+                    <th>Car</th>
+                    <th>Booked date</th>
+                    <th>Booking status</th>
+                    <th>Details</th>
+                </tr>
+            {% for booking in page_obj %}
+                <tr>
+                    <td>{{ booking.booking_number }}</td>
+                    <td>{{ booking.track }}</td>
+                    <td>{{ booking.car }}</td>
+                    <td>{{ booking.date }}</td>
+                    <td>{{ booking.status }}</td>
+                    <td>
+                        <a href="{% url 'bookings:details' booking.id %}">
+                        <button class="btn btn-secondary">Order details</button>
+                        </a>
+                    </td>
+                </tr>
             {% endfor %}
+            </table>
+
+
         </div>
 
     </body>
-</div>
+
 
 {% endblock %}

@@ -60,6 +60,7 @@ def register_user(request):
 
         if form.is_valid():
             user = form.save()
+            messages.info(request, "An email has been sent to your inbox, please use the link to activate your account.")
 
             return redirect('/')
 

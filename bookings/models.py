@@ -1,11 +1,13 @@
 from django.db import models
 from django.conf import settings
+import datetime
 from cars.models import Car
 from tracks.models import Track
 
 
 class Booking(models.Model):
-    date_created = models.DateTimeField(auto_now=True)
+    booking_number = models.CharField(max_length=9, blank=False, default=0)
+    date_created = models.DateTimeField(auto_now_add=True)
     date = models.DateField(null=True, blank=True)
     cost = models.FloatField(null=True, blank=True, default=0)
     finished = models.BooleanField(default=False)
@@ -17,9 +19,24 @@ class Booking(models.Model):
     track = models.ForeignKey(Track, on_delete=models.CASCADE, related_name='bookings')
 
     class Meta:
-        ordering = ['date_created']
+        ordering = ['-id']
 
     def __str__(self):
+        return str(self.booking_number)
+
+    def save(self, *args, **kwargs):
+        today = datetime.date.today()
+        today_string = today.strftime('%y%m%d')
+        next_booking_number = '001'
+        last_booking = Booking.objects.filter(booking_number__startswith=today_string).order_by('booking_number').last()
+        if last_booking:
+            last_booking_number = int(last_booking.booking_number[6:])
+            next_booking_number = '{0:03d}'.format(last_booking_number + 1)
+        self.booking_number = today_string + next_booking_number
+        super(Booking, self).save(*args, **kwargs)
+
+    @property
+    def status(self):
         status = 'Pending'
         if not self.paid and not self.finished and self.canceled:
             status = 'Canceled'
@@ -29,12 +46,11 @@ class Booking(models.Model):
         elif self.paid and self.finished and not self.canceled:
             status = 'Finished'
 
-        return f'{self.user.first_name} {self.user.last_name} rent a {self.car}, on {self.track} - ' \
-               f'{self.track.location}, on {self.date} Status: {status}'
+        return status
 
-    @property
-    def total_cost(self):
-        return self.car.rate
+    # @property
+    # def total_cost(self):
+    #     return self.car.rate
 
     # def human_date(self):
     #     return self.date_created.strftime('%Y-%m-%d %H:%M:%S')

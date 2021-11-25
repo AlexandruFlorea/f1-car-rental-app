@@ -32,7 +32,7 @@
             {% for booking in page_obj %}
                 <ul>
                     <li style="background: black" >
-                        {{booking}}
+                        {{ booking.booking_number }} - {{ booking.track }} - {{ booking.car }} - {{ booking.date }} - {{ booking.status }}
                         <a href="{% url 'bookings:details' booking.id %}">Order details</a>
                     </li>
                 </ul>

@@ -16,7 +16,9 @@ def show_all_bookings(request):
         query = request.POST.get('q')
         if query:
             lookups = (Q(car__name__icontains=query) | Q(track__name__icontains=query) | Q(user__email__icontains=query)
-                       | Q(track__location__icontains=query) | Q(date_created__icontains=query))
+                       | Q(track__location__icontains=query) | Q(date_created__year__icontains=query)
+                       | Q(date_created__month__icontains=query) | Q(date_created__day__icontains=query)
+                       | Q(booking_number__icontains=query))
 
             bookings = request.user.bookings.filter(lookups).distinct()
             paginator = Paginator(bookings, 15)  # Objects on the page

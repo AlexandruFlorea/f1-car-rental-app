@@ -27,14 +27,8 @@
         </div>
         {% if request.user.is_authenticated %}
         <div>
-            <h4>Bookings so far: </h4>
-            {% for booking in car.bookings.all %}
-                <ul>
-                    <li>
-                        {{ booking }}
-                    </li>
-                </ul>
-            {% endfor %}
+            <h5>Times booked so far: {{ car.bookings.all.count }}</h5>
+
         </div>
         {% endif %}
 </div>
