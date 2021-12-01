@@ -4,7 +4,7 @@ from bookings.models import Booking
 from utils.constants.booking_limits import CAR_BOOKING_LIMIT, TRACK_BOOKING_LIMIT
 
 
-# for the signals to work, we need to define the ready method in apps.py, where we just import this signals module
+# # for the signals to work, we need to define the ready method in apps.py, where we just import this signals module
 
 # @receiver(post_save, sender=Booking)
 # def car_availability_handler(instance, *args, **kwargs):

@@ -4,7 +4,6 @@ from bookings.models import Booking
 from cars.models import Car
 
 
-
 @admin.register(Booking, site=my_admin_site)  # register on the custom admin site
 class BookingAdmin(admin.ModelAdmin):
     @admin.action(description='Generate Excel report')

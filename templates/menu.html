@@ -13,6 +13,7 @@
         <div class="topnav-right">
             {% if request.user.is_authenticated %}
                 {% cart_link request.session %}
+                <a href="{% url 'about' %}">About us</a>
                 <div class="dropdown">
                     <button class="dropbtn">Welcome, {{ user.first_name }}! <img src="{{ request.user.profile.image_url }}" width="20px"  alt="profile image"></button>
                     <div class="dropdown-content">
@@ -32,7 +33,7 @@
             {% endif %}
         </div>
         <form class="d-flex" method="POST" action="{% url 'search' %}">
-            <input class="form-control me-2" type="text" name="q" value="{{request.POST.q}}" placeholder="Search site" required />
+            <input class="form-control me-2" type="text" name="q" value="{{request.POST.q}}" placeholder="Search for cars, tracks, bookings, dates..." required />
             <button class="btn btn-secondary" type="submit">Search</button>
 
             {% csrf_token %}

@@ -65,3 +65,8 @@ def search_site(request):
             })
 
     return redirect(reverse('homepage'))
+
+
+def about_page(request):
+
+    return render(request, 'about_us.html', {})

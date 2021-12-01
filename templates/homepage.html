@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% include 'random_fact.html' %}
+
 
 {% block title %}
 <head>
@@ -36,10 +36,13 @@
                         {% endfor %}
                     </ul>
                 </div>
+                <div>
                 {% block random_fact %}
-
+                    {% autoescape on %}
                     <p><strong>Random F1 fact:</strong> {{ random_fact }}</p>
+                    {% endautoescape %}
                 {% endblock random_fact %}
+                </div>
                 <div>
                     <h5>Wanna see what it's like for an amateur to drive an F1 car?</h5>
                     <iframe width="650" height="350" src="https://www.youtube.com/embed/kEP9R-osh7o" title="YouTube video player" frameborder="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

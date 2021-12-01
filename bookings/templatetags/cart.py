@@ -2,6 +2,7 @@ from django import template
 
 register = template.Library()
 
+
 # Custom filter tag to load in templates
 @register.filter(name='dict_length')  # name of the filter to use in templates
 def dict_length(parent, key):

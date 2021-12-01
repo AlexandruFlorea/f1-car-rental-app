@@ -3,12 +3,12 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.utils.translation import gettext_lazy as _
 
 
-class AuthUserManager(BaseUserManager):  # Interfata pentru comunicare cu baza de date
+class AuthUserManager(BaseUserManager):  # Database communication interface
     def create_user(self, email, first_name, last_name):
         user = self.model(
-            email = email,
-            first_name = first_name,
-            last_name = last_name,
+            email=email,
+            first_name=first_name,
+            last_name=last_name,
         )
         user.save()
 

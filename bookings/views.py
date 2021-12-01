@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404, redirect, Http404, reverse
+import csv
+from django.shortcuts import render, get_object_or_404, redirect, Http404, reverse, HttpResponse
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -153,8 +154,21 @@ def cancel_booking(request, booking_id):
     messages.success(request, 'Booking cancelled successfully!')
 
     # # Control car availability
-    # if booking.car.number_of_bookings < 5:
-    #     booking.car.available = True
-    #     booking.car.save()
+    # booking.car.available = True
+    # booking.car.save()
 
     return redirect(reverse('bookings:all'))
+
+
+@login_required(login_url='/users/login/')
+def export_all_bookings(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="my_bookings.csv"'
+    bookings = Booking.objects.filter(user=request.user)
+    header = ['Booking number', 'Track', 'Car', 'Booked date', 'User email']
+    writer = csv.writer(response)
+    writer.writerow(header)
+    for booking in bookings:
+        writer.writerow([booking.booking_number, booking.track, booking.car, booking.date, booking.user])
+
+    return response

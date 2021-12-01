@@ -13,8 +13,7 @@ class Booking(models.Model):
     finished = models.BooleanField(default=False)
     canceled = models.BooleanField(default=False)
     paid = models.BooleanField(default=False)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
-                             related_name='bookings')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='bookings')
     car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='bookings')
     track = models.ForeignKey(Track, on_delete=models.CASCADE, related_name='bookings')
 

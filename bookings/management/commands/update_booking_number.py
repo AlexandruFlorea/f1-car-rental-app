@@ -6,7 +6,7 @@ class Command(BaseCommand):
     help = 'Update booking number for backdated orders.'
 
     def handle(self, *args, **options):
-        bookings = Booking.objects.filter(booking_number=211124002)
+        bookings = Booking.objects.all().order_by('id')
 
         print(f'Updating a total of {len(bookings)} bookings.')
 

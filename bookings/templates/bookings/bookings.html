@@ -19,7 +19,7 @@
     <h2 class="main" style="color: white">My bookings</h2>
     <br>
         <form method="POST" action="{% url 'bookings:all' %}">
-            <input type="text" name="q" value="{{request.POST.q}}" placeholder="Search bookings"/>
+            <input type="text" name="q" placeholder="Search bookings"/>
             <button class="btn btn-secondary" type="submit">Search</button>
 
             {% csrf_token %}
@@ -40,6 +40,11 @@
             {% endif %}
         </ul>
     </nav>
+    <div>
+        <a href="{% url 'bookings:export_to_csv' %}">
+            <button class="btn btn-primary">Export all bookings to csv</button>
+        </a>
+    </div>
         <div>
 
             <table style="width:60%;">

@@ -1,7 +1,7 @@
 from django.urls import path
 from bookings.views import show_all_bookings, show_booking_details, create_booking, \
     show_checkout, cancel_booking, remove_car_from_cart, remove_track_from_cart, \
-    add_car_to_cart, add_track_to_cart
+    add_car_to_cart, add_track_to_cart, export_all_bookings
 
 
 app_name = 'bookings'
@@ -16,5 +16,6 @@ urlpatterns = [
     path('<int:track_id>/remove_track_from_cart/', remove_track_from_cart, name='remove_track_from_cart'),
     path('<int:car_id>/add_car_to_cart/', add_car_to_cart, name='add_car_to_cart'),
     path('<int:track_id>/add_track_to_cart/', add_track_to_cart, name='add_track_to_cart'),
+    path('to_csv/', export_all_bookings, name='export_to_csv'),
 
 ]

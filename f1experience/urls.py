@@ -18,7 +18,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth import views as auth_views
-from f1experience.views import homepage_view, search_site
+from f1experience.views import homepage_view, search_site, about_page
 
 
 urlpatterns = [
@@ -33,6 +33,7 @@ urlpatterns = [
     path('reset/done/',
          auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'),
          name='password_reset_complete'),  # just has to be here, for password reset to work properly
+    path('about/', about_page, name='about'),
 ]
 
 if settings.DEBUG is True:
