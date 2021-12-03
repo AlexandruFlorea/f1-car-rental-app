@@ -34,6 +34,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'api.apps.ApiConfig',
+    'rest_framework',
+    'corsheaders',
     'django_extensions',
     'bookings.apps.BookingsConfig',
     'crispy_forms',
@@ -53,7 +56,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
-
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -177,3 +181,14 @@ MESSAGE_TAGS = {
 
 LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'users:profile'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+ # Apps that have access to our app via the API
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3030',
+]
