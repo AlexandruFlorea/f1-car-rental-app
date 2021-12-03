@@ -4,7 +4,7 @@ from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
 from api.register import RegisterViewSet
 from api.cars import CarViewSet
 from api.tracks import TrackViewSet
-from api.bookings import BookingViewSet
+from api.bookings import BookingViewSet, CancelBookingView
 
 
 router = DefaultRouter()  # instantiate the router
@@ -18,5 +18,6 @@ urlpatterns = [
     path('browser-auth/', include('rest_framework.urls')),
     path('auth/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('bookings/<int:pk>/cancel/', CancelBookingView.as_view(), name='cancel_booking'),
 
 ]

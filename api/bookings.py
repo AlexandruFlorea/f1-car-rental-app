@@ -1,6 +1,9 @@
 from rest_framework import serializers, viewsets
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.generics import get_object_or_404
 from bookings.models import Booking
 
 
@@ -21,3 +24,14 @@ class BookingViewSet(viewsets.ModelViewSet):
     queryset = Booking.objects.all()  # here we can limit the queryset items
     permission_classes = (IsAuthenticatedOrReadOnly, )
     pagination_class = BookingPaginator
+
+
+class CancelBookingView(APIView):
+    permission_classes = (IsAuthenticated, )
+
+    def put(self, request, pk):
+        booking = get_object_or_404(Booking, pk=pk)
+        booking.canceled = True
+        booking.save()
+
+        return Response({'canceled': True})
