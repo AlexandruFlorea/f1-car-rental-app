@@ -11,7 +11,7 @@ class Track(models.Model):
     length = models.FloatField(default=0)
     available = models.BooleanField(default=True)
     race_day = models.DateField(null=True, blank=True, default=timezone.now)
-    weather_code = models.CharField(max_length=128, null=True, default='iasi_romania_675810')
+    weather_code = models.CharField(max_length=128, null=True, default='75810')
 
     def __str__(self):
         return f'{self.name}'

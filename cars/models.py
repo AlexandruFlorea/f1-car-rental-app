@@ -19,7 +19,7 @@ class Category(models.Model):
 
 class Car(models.Model):
     name = models.CharField(max_length=128, unique=True, null=False)
-    power_unit = models.CharField(max_length=128, unique=False, null=False)
+    power_unit = models.CharField(max_length=64, unique=False, null=False)
     races_won = models.IntegerField(default=0)
     handling = models.CharField(max_length=128, null=False)
     rate = models.IntegerField(default=1000)
