@@ -23,16 +23,16 @@ class Booking(models.Model):
     def __str__(self):
         return str(self.booking_number)
 
-    def save(self, *args, **kwargs):
-        today = datetime.date.today()
-        today_string = today.strftime('%y%m%d')
-        next_booking_number = '001'
-        last_booking = Booking.objects.filter(booking_number__startswith=today_string).order_by('booking_number').last()
-        if last_booking:
-            last_booking_number = int(last_booking.booking_number[6:])
-            next_booking_number = '{0:03d}'.format(last_booking_number + 1)
-        self.booking_number = today_string + next_booking_number
-        super(Booking, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     today = datetime.date.today()
+    #     today_string = today.strftime('%y%m%d')
+    #     next_booking_number = '001'
+    #     last_booking = Booking.objects.filter(booking_number__startswith=today_string).order_by('booking_number').last()
+    #     if last_booking:
+    #         last_booking_number = int(last_booking.booking_number[6:])
+    #         next_booking_number = '{0:03d}'.format(last_booking_number + 1)
+    #     self.booking_number = today_string + next_booking_number
+    #     super(Booking, self).save(*args, **kwargs)
 
     @property
     def status(self):

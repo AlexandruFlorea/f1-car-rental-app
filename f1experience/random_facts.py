@@ -1,7 +1,9 @@
 from random import choice
+import os
+from f1experience.settings.base import BASE_DIR
 
 
-with open(r'G:\Python\f1-car-rental-app\web_scraping\output\data.json', encoding='utf-8') as f:
+with open(os.path.join(BASE_DIR, 'web_scraping\output\data.json')) as f:
     facts = [
         fact.rstrip('\r\n ').replace('"', '')
         for fact in f.readlines()
