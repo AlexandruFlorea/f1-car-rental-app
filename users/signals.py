@@ -14,7 +14,7 @@ AuthUserModel = get_user_model()
 @receiver(pre_save, sender=AuthUserModel)
 def inactivate_user(instance, **kwargs):
     if instance.pk is None:
-        instance.is_active = True
+        instance.is_active = False
         instance.password = None
 
 

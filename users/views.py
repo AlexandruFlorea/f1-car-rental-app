@@ -73,7 +73,7 @@ def activate(request, token):
     activation = get_object_or_404(Activation, token=token)
 
     if activation.expires_at < timezone.now():
-        return redirect('users:regenerate_token', args=(token, ))
+        return redirect(reverse('users:regenerate_token', args=(token, )))
 
     if request.method == 'GET':
         form = PasswordForm(activation.user)
@@ -82,6 +82,8 @@ def activate(request, token):
 
         if form.is_valid():
             form.save()
+            messages.info(request, 'Account activated successfully, you can now login.')
+
             return redirect(reverse('users:login'))
 
     return render(request, 'users/email/set_password.html', {
@@ -101,6 +103,8 @@ def regenerate_token(request, token):
     activation.save()
 
     send_activation_email(activation)
+    messages.info(request, f'A new email has been sent to {activation.user}, '
+                           f'follow those instructions to activate your account.')
 
     return redirect('/')
 
