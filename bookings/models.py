@@ -6,7 +6,7 @@ from tracks.models import Track
 
 
 class Booking(models.Model):
-    booking_number = models.CharField(max_length=9, blank=False, default=999)
+    booking_number = models.CharField(max_length=9, blank=False, default=999, editable=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date = models.DateField(null=True, blank=True)
     cost = models.FloatField(null=True, blank=True, default=0)
@@ -27,12 +27,15 @@ class Booking(models.Model):
         today = datetime.date.today()
         today_string = today.strftime('%y%m%d')
         next_booking_number = '001'
-        last_booking = Booking.objects.filter(booking_number__startswith=today_string).order_by('booking_number').last()
-        if last_booking:
-            last_booking_number = int(last_booking.booking_number[6:])
-            next_booking_number = '{0:03d}'.format(last_booking_number + 1)
-        self.booking_number = today_string + next_booking_number
-        super(Booking, self).save(*args, **kwargs)
+        last_booking = Booking.objects.order_by('booking_number').last()
+        if not self.booking_number:
+            if last_booking:
+                last_booking_number = int(last_booking.booking_number[6:])
+                next_booking_number = '{0:03d}'.format(last_booking_number + 1)
+            self.booking_number = today_string + next_booking_number
+            super(Booking, self).save(*args, **kwargs)
+        else:
+            super(Booking, self).save(*args, **kwargs)
 
     @property
     def status(self):
