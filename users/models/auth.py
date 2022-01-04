@@ -4,19 +4,22 @@ from django.utils.translation import gettext_lazy as _
 
 
 class AuthUserManager(BaseUserManager):  # Database communication interface
-    def create_user(self, email, first_name, last_name):
+    def create_user(self, email, first_name, last_name, is_social_user=False):
         user = self.model(
             email=email,
             first_name=first_name,
             last_name=last_name,
         )
+
+        if is_social_user:
+            user.is_social_user = is_social_user
+
         user.save()
 
         return user
 
     def create_superuser(self, email, first_name, last_name):
         user = self.create_user(email, first_name, last_name)
-
         user.is_staff = True
         user.is_superuser = True
         user.save()
@@ -27,7 +30,7 @@ class AuthUserManager(BaseUserManager):  # Database communication interface
 class AuthUser(AbstractUser):
     username = None
     email = models.EmailField(_('email address'), null=False, blank=False, unique=True)
-    password = models.CharField(_('password'), max_length=128, blank=False, null=True, default='',)
+    password = models.CharField(_('password'), max_length=128, blank=True, null=True, default='')
 
     USERNAME_FIELD = 'email'  # User identifier column
     REQUIRED_FIELDS = ['first_name', 'last_name']

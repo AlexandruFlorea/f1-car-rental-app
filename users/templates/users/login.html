@@ -7,18 +7,27 @@
 {% block content %}
 <div class="main" align="center">
 <h5>Enter your credentials below:</h5>
-<form action="{% url 'users:login' %}" method="post">
-    {% csrf_token %}
-    <div class="field">
-        <label>Email address</label>
-        <input type="text" name="email" placeholder="Enter your email address"/>
-    </div>
-    <div class="field">
-        <label>Password</label>
-        <input type="password" name="password" placeholder="Enter your password"/>
+    <form action="{% url 'users:login' %}" method="post">
+        {% csrf_token %}
+        <div class="field">
+            <label>Email address</label>
+            <input type="text" name="email" placeholder="Enter your email address"/>
+        </div>
+        <div class="field">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter your password"/>
 
-    </div>
-    <button class="btn btn-primary" type="submit">Login</button>
-</form>
+        </div>
+        <button class="btn btn-primary" type="submit">Login</button>
+    </form>
+    <p>
+        <a href="{% url 'users:social:begin' 'github' %}">Login with GitHub</a>
+    </p>
+    <p>
+        <a href="{% url 'users:social:begin' 'facebook' %}">Login with Facebook</a>
+    </p>
+    <p>
+        <a href="{% url 'users:social:begin' 'google-oauth2' %}">Login with Google</a>
+    </p>
 </div>
 {% endblock %}

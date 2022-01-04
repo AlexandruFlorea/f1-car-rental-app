@@ -1,4 +1,5 @@
 from django.urls import path
+from django.conf.urls import include
 from django.contrib.auth import views as auth_views
 from users.views import login_user, register_user, logout_user, show_profile, activate, regenerate_token, password_reset_request
 
@@ -21,4 +22,5 @@ urlpatterns = [
     path('reset/done/',
          auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'),
          name='password_reset_complete'),
+    path('social_auth/', include('social_django.urls')),
 ]
