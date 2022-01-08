@@ -12,8 +12,8 @@ class IsActiveTestCase(TestCase):
     def setUp(self) -> None:
         self._user = {
             'email': 'a@gmail.com',
-            'first_name': 'Mihai',
-            'last_name': 'Vladu',
+            'first_name': 'John',
+            'last_name': 'doe',
         }
 
     def test_user_is_created_as_inactive(self):

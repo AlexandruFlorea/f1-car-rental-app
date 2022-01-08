@@ -1,7 +1,7 @@
 import csv
 from django.shortcuts import render, get_object_or_404, redirect, Http404, reverse, HttpResponse
 from django.core.paginator import Paginator
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 from django.db.models import Q
 from bookings.models import Booking
@@ -146,6 +146,7 @@ def show_checkout(request):
 
 
 @login_required(login_url='/users/login/')
+@permission_required('change_booking', raise_exception=False)
 def cancel_booking(request, booking_id):
     booking = get_object_or_404(Booking, pk=booking_id)
     booking.canceled = True

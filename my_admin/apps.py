@@ -8,7 +8,4 @@ class MyAdminConfig(AppConfig):
 
 
 class MyAdminSiteConfig(AdminConfig):  # Overrides the django.contrib.admin app
-
-
-
     default_site = 'my_admin.admin.MyAdminSite'

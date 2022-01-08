@@ -6,7 +6,7 @@ from tracks.models import Track
 
 
 class Booking(models.Model):
-    booking_number = models.CharField(max_length=9, blank=False, default=999, editable=False)
+    booking_number = models.CharField(max_length=9, blank=False, editable=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date = models.DateField(null=True, blank=True)
     cost = models.FloatField(null=True, blank=True, default=0)
