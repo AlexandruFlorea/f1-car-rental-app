@@ -25,8 +25,10 @@ class Car(models.Model):
     rate = models.IntegerField(default=1000)
     available = models.BooleanField(default=True)
     color = models.CharField(max_length=24, null=True)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, related_name='cars', null=True, default=None)
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='cars', null=True, default=None)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL,
+                                 related_name='cars', null=True, default=None)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL,
+                              related_name='cars', null=True, default=None)
 
     def __str__(self):
         return f'{self.name}'

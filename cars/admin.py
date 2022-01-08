@@ -30,13 +30,16 @@ class CarAdmin(admin.ModelAdmin):
         if request.user.is_superuser:
             return queryset
 
-        return queryset.filter(owner=request.user)
+        return queryset.filter(owner=request.user)  # limit the results to those owned by the requester
 
+    # Remove the owner option altogether (it's autofilled anyway)
     def get_fields(self, request, obj=None):
         fields = super().get_fields(request, obj)
 
         if not request.user.is_superuser:
-            fields.remove('owner')
+            fields_to_remove = ['owner', 'rate']
+            for item in fields_to_remove:
+                fields.remove(item)
 
         return fields
 
