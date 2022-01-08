@@ -21,7 +21,7 @@ class BookingSerializer(serializers.ModelSerializer):
 
 class BookingViewSet(viewsets.ModelViewSet):
     serializer_class = BookingSerializer
-    queryset = Booking.objects.all()  # here we can limit the queryset items
+    queryset = Booking.objects.all()  # here we could limit the queryset items
     permission_classes = (IsAuthenticatedOrReadOnly, )
     pagination_class = BookingPaginator
 

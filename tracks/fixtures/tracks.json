@@ -5,7 +5,9 @@
     "fields": {
       "name": "Bahrain International Circuit",
       "location": "Sakir, Bahrain",
-      "length": 5.412
+      "length": 5.412,
+      "weather_code": "bahrain-island_bahrain_290372",
+      "race_day": "2022-03-28"
     }
   },
       {
