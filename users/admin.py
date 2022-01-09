@@ -2,8 +2,13 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin, GroupAdmin
 from django.contrib.auth.models import Group
 from django.utils.translation import gettext_lazy as _
-from users.models import AuthUser
+from users.models import AuthUser, Profile
 from my_admin.admin import my_admin_site
+
+
+class ProfileInline(admin.TabularInline):
+    model = Profile
+    extra = 3
 
 
 # to display AUTHENTICATION AND AUTHORIZATION on the admin page
@@ -19,6 +24,7 @@ class AdminAuthUser(BaseUserAdmin):
     search_fields = ('email', 'first_name', 'last_name')
     readonly_fields = ('date_joined', )
     actions = ('activate_users', 'deactivate_users', )
+    inlines = (ProfileInline, )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
@@ -28,8 +34,11 @@ class AdminAuthUser(BaseUserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         (_('Personal info'), {'fields': ('first_name', 'last_name',)}),
+        (_('Superuser section'), {
+            'fields': ('is_superuser',),
+        }),
         (_('Permissions'), {
-            'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions'),
+            'fields': ('is_active', 'is_staff', 'groups', 'user_permissions'),
         }),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
@@ -65,17 +74,20 @@ class AdminAuthUser(BaseUserAdmin):
 
     # prevent staff from deleting a model instance, regardless of their permissions
     def has_delete_permission(self, request, obj=None):
-        return False
+        if request.user.is_superuser:
+            return True
+        else:
+            return False
 
     @admin.action(description='Activate users')
     def activate_users(self, request, queryset):
         users = queryset.filter(is_active=False).update(is_active=True)
-        self.message_user(request, 'Activated {} users.'.format(users))
+        self.message_user(request, f'Activated {users} users.')
 
     @admin.action(description='Deactivate users')
     def deactivate_users(self, request, queryset):
         users = queryset.filter(is_active=True).update(is_active=False)
-        self.message_user(request, 'Deactivated {} users.'.format(users))
+        self.message_user(request, f'Deactivated {users} users.')
 
     # limit access to actions
     def get_actions(self, request):
