@@ -3,23 +3,23 @@ Formula one car rental app
 Short description: a platform through which you can rent a Formula one car for a few laps on a circuit of your choice.
 
 Key features - core:
-1. Car selection
-2. Track selection
+1. Car selection - done
+2. Track selection - done
 3. User registration - done
-4. Shopping cart / checkout
-5. Active rentals / Rental history
-6. Weather information - must show weather based on track location - url constructor method/search parameters
+4. Shopping cart / checkout - done
+5. Active rentals / Rental history - done
+6. Weather information - must show weather based on track location - url constructor method/search parameters - done
 
 
 Possible features:
 1. Weather information - must show weather based on track location - url constructor method/search parameters
 2. Internationalization and localization
 3. Detect user location and suggest the closest track
-4. Global Search function
+4. Global Search function - done
 5. Booking confirmation (email + pdf)
 6. Web scrapping from the F1 site (the latest news)
-7. About, contact
-8. Social networks authentication
+7. About, contact - done
+8. Social networks authentication - done
 9. API (based on GraphQL)
 10. User stories (blog section)
 11.
@@ -72,7 +72,13 @@ Reservation - available fields
 14. Add, delete, update tracks and cars - by staff only - done
 15. Global Search function - done
 16. Custom commands - done
-17.
+17. REST API - done
+18. Social authentication (Google, Facebook, GitHub) - done
+19. Admin page customization - done
+20. Unit tests - done
+21. Deploy on AWS - done
+22. Web scraping - done
+23.
 
 
 ********** Questions ***********
