@@ -27,6 +27,7 @@ urlpatterns = [
     path('', homepage_view, name='homepage'),
     path('search/', search_site, name='search'),
     path('cars/', include('cars.urls')),
+    path('blogs/', include('blogs.urls')),
     path('users/', include('users.urls')),
     path('tracks/', include('tracks.urls')),
     path('bookings/', include('bookings.urls')),

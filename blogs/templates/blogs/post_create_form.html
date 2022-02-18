@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>New post@MoonlitFarm</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="main">
+    <div class="container">
+        <h4 align="center">Creating a new post</h4>
+    </div>
+</div>
+<br>
+
+
+<div class="col-md-8 mt-3 left">
+    <div class="card mb-4">
+        <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Save">
+        </form>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

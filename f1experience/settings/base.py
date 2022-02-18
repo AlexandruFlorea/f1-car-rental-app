@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'tracks.apps.TracksConfig',
     'cars.apps.CarsConfig',
+    'blogs.apps.BlogsConfig',
     'users.apps.UsersConfig',
     "social_django",
     'my_admin.apps.MyAdminConfig',

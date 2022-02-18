@@ -9,11 +9,12 @@
         <a href="{% url 'cars:all' %}">Teams</a>
         <a href="{% url 'tracks:all' %}">Tracks</a>
         <a href="{% url 'bookings:create' %}"><strong>Start booking process</strong></a>
+        <a href="{% url 'blogs:all' %}">Blogs</a>
 
         <div class="topnav-right">
             {% if request.user.is_authenticated %}
                 {% cart_link request.session %}
-                <a href="{% url 'about' %}">About us</a>
+
                 <div class="dropdown">
                     <button class="dropbtn">Welcome, {{ user.first_name }}! <img src="{{ request.user.profile.image_url }}" width="20px"  alt="profile image"></button>
                     <div class="dropdown-content">

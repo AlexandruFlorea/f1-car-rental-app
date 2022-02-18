@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Blog@MoonlitFarm</title>
+{% endblock %}
+
+{% block content %}
+
+<header class="masthead">
+    <div class="main">
+        <h3 align="center">Welcome to our blog</h3>
+    </div>
+</header>
+<div class="container">
+    <a href="{% url 'blogs:create' %}" class="btn btn-primary">New Post</a>
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8 mt-3 left">
+            {% for post in post_list %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.title }}</h2>
+                    <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_at }} </p>
+                    <p class="card-text">{{ post.content|slice:":200" }}</p>
+                    <div class="container">
+                        <a href="{% url 'blogs:post_detail' post.slug  %}" class="btn btn-primary">Read More &rarr;</a>
+                        {% if request.user.is_superuser or request.user == post.author %}
+                            <a href="{% url 'blogs:update' post.slug  %}" class="btn btn-success">Update post</a>
+                            <a href="{% url 'blogs:delete' post.slug  %}" class="btn btn-danger">Delete post</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+{% endblock %}

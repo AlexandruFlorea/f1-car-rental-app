@@ -1,0 +1,26 @@
+from django.contrib import admin
+from my_admin.admin import my_admin_site
+from blogs.models import Post, Comment
+
+
+@admin.register(Post, site=my_admin_site)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ['title', 'slug', 'status','created_at']
+    list_filter = ('status', 'author')
+    search_fields = ['title', 'content']
+    prepopulated_fields = {'slug': ('title',)}
+    actions = ['publish_posts']
+
+    def publish_posts(self, request, queryset):
+        queryset.update(status=1)
+
+
+@admin.register(Comment, site=my_admin_site)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['name', 'body', 'post', 'created_on', 'active']
+    list_filter = ['active', 'created_on']
+    search_fields = ['name', 'email', 'body']
+    actions = ['approve_comments']
+
+    def approve_comments(self, request, queryset):
+        queryset.update(active=True)

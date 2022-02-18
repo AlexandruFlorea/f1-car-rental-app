@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Delete post@MoonlitFarm</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="main">
+    <div class="container">
+        <h4 align="center">Deleting post</h4>
+    </div>
+</div>
+<br>
+
+<div align="center">
+    <form method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{ object.title }}"?</p>
+        <button class="btn btn-danger" type="submit">Confirm</button>
+    </form>
+</div>
+
+{% endblock %}
