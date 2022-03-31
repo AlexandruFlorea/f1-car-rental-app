@@ -9,7 +9,7 @@ def show_all_cars(request):
     form.is_valid()
     cars = form.apply_filters()
 
-    paginator = Paginator(cars, 3)
+    paginator = Paginator(cars, 6)
     page_obj = paginator.get_page(request.GET.get('page', 1))  # Objects on the page
 
     return render(request, 'cars/cars.html', {

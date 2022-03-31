@@ -1,15 +1,23 @@
 {% load static %}
 {% load cart %}
 
-<link rel="stylesheet" href="{% static 'styles/menu.css' %}">
-
 <div class="topnav">
-    <nav>
-        <a href="/">Homepage</a>
-        <a href="{% url 'cars:all' %}">Teams</a>
-        <a href="{% url 'tracks:all' %}">Tracks</a>
-        <a href="{% url 'bookings:create' %}"><strong>Start booking process</strong></a>
-        <a href="{% url 'blogs:all' %}">Blogs</a>
+    
+        <div>
+            <a href="/">Homepage</a>
+            <a href="{% url 'cars:all' %}">Teams</a>
+            <a href="{% url 'tracks:all' %}">Tracks</a>
+            <a href="{% url 'bookings:create' %}"><strong>Start booking process</strong></a>
+            <a href="{% url 'blogs:all' %}">Blogs</a>
+        </div>
+
+        <form class="search" method="POST" action="{% url 'search' %}" style="width: 500px;">
+            <input type="text" name="q" value="{{request.POST.q}}" placeholder="Search for cars, tracks, bookings, dates..." required />
+            <button type="submit"><i class="fa fa-search"></i></button>
+
+            {% csrf_token %}
+        </form>
+    
 
         <div class="topnav-right">
             {% if request.user.is_authenticated %}
@@ -33,11 +41,5 @@
                 <a href="{% url 'users:password_reset' %}">Forgot password?</a>
             {% endif %}
         </div>
-        <form class="d-flex" method="POST" action="{% url 'search' %}">
-            <input class="form-control me-2" type="text" name="q" value="{{request.POST.q}}" placeholder="Search for cars, tracks, bookings, dates..." required />
-            <button class="btn btn-secondary" type="submit">Search</button>
 
-            {% csrf_token %}
-        </form>
-    </nav>
 </div>

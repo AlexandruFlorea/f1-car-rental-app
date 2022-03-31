@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'styles/two-column-layout.css' %}">
 
 {% block title %}
     <title>F1 experience</title>
@@ -9,78 +8,88 @@
 
 {% block content %}
 
-<h2 class="main">Constructors list:</h2>
-<br>
-<div class="container">
-    <div class="row" style="display: flex;">
-        {% if not booking %}
-            <div class="column" style="flex: 50%">
-                <form class="form-check form-check-inline" method="get" action="{% url 'cars:all' %}">
-                    {{ form.as_p }}
-                    <input type="submit" value="Apply filters" />
-                </form>
-            </div>
-        {% else %}
-            <h4>Select the desired team and click on the "Book now" button:</h4>
-        {% endif %}
-    </div>
-     <nav aria-label="Page navigation example">
-    <ul class="pagination">
-        {% if page_obj.paginator.num_pages > 1 %}
-                {% if page_obj.has_previous %}
-                   <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
-                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a></li>
+<div class="cars-container">
+    <div class="cars-content">
+        <h2 class="title">Constructors list:</h2>
+        <br>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                {% if page_obj.paginator.num_pages > 1 %}
+                        {% if page_obj.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+                            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a></li>
+                        {% endif %}
+                            <li class="page-item disabled"><a class="page-link" href="#">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a></li>
+                        {% if page_obj.has_next %}
+                            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a></li>
+                            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></li>
+                        {% endif %}
                 {% endif %}
-                    <li class="page-item disabled"><a class="page-link" href="#">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a></li>
-                {% if page_obj.has_next %}
-                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a></li>
-                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></li>
-                {% endif %}
-        {% endif %}
-    </ul>
-    </nav>
+            </ul>
+        </nav>
 
-    <ul class="row">
-        <li style="margin-bottom: 10px;" class="col-12">
-        {% for car in page_obj %}
-            <div class="col-12">
-                {% for image in car.image_urls %}
-                    {% if booking %}
-                        <img src="{{ image }}" alt="Car image" width="432px">
-                    {% else %}
-                        <a href="{% url 'cars:details' car.id %}">
-                            <img src="{{ image }}" alt="Car details" width="432px">
-                        </a>
-                    {% endif %}
-                {% endfor %}
-            </div>
+        <div class="cars-list">
+            {% for car in page_obj %}
+            <div class="cars-item">
                 <div>
-                    <p>
+                    {% for image in car.image_urls %}
+                        {% if booking %}
+                            <img src="{{ image }}" alt="Car image" width="432px">
+                        {% else %}
+                            <a href="{% url 'cars:details' car.id %}">
+                                <img src="{{ image }}" alt="Car details" width="432px">
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <br>
+                <div>
+                    <p style="text-align: center; align-content: center;">
                         Team: <strong>{{ car.name }}</strong>
                         Power unit: <strong> {{ car.power_unit }}</strong>
                         Handling: <strong>{{ car.handling }}/10</strong>
+                        <br>
                         Rate: {{ car.rate }} EUR per session
-
+                    </p>
+                    <div style="display: flex; justify-content: center;">
                         {% if booking %}
                             {% if car in available_cars %}
-                                <a href="{% url 'bookings:add_car_to_cart' car.id %}">
-                                    <button class="btn btn-info">Book this car</button>
+                                <a href="{% url 'bookings:add_car_to_cart' car.id %}" style="text-decoration: none;">
+                                    <button class="lights-on">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        Book this car
+                                    </button>
                                 </a>
                             {% else %}
-                                <a href="">
-                                    <button class="btn btn-warning" disabled>Fully booked!</button>
+                                <a href="" style=" text-decoration: none;">
+                                    <button class="long-button btn-warning" style="cursor: not-allowed;" disabled>Fully booked!
+                                    </button>
                                 </a>
                             {% endif %}
                         {% else %}
-                            <a href="{% url 'cars:details' car.id %}">
-                                <button class="btn btn-secondary">More details</button>
+                            <a href="{% url 'cars:details' car.id %}" style="text-decoration: none;">
+                                <button class="long-button">More details</button>
                             </a>
                         {% endif %}
-                    </p>
+                    </div>
                 </div>
-        </li>
-        {% endfor %}
-    </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% if not booking %}
+    <div class="card cars-filters">
+        <div class="card-body">
+            <form method="get" action="{% url 'cars:all' %}">
+                {{ form.as_p}}
+                <input type="submit" value="Apply filters" class="btn btn-info" style="display: block; margin: 5px auto; padding: 1px 70px;"/>
+            </form>
+        </div>
+    </div>
+    {% endif %}
 </div>
 
 {% endblock %}

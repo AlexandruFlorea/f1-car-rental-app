@@ -7,13 +7,12 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+/* *, *:before, *:after {
   box-sizing: inherit;
-}
+} */
 
 .column {
   float: center;
-  align: center;
   width: 33%;
   margin-bottom: 16px;
   padding: 0 8px;
@@ -35,12 +34,14 @@ html {
   padding: 0 16px;
 }
 
-.container::after, .row::after {
+/* .container::after, .row::after {
   content: "";
   clear: both;
   display: table;
+} */
+.row {
+  z-index: -1;
 }
-
 .title {
   color: grey;
 }

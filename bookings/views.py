@@ -78,7 +78,7 @@ def add_track_to_cart(request, track_id):
         if bookings_on_track < CAR_BOOKING_LIMIT:
             available_cars.append(car)
 
-    paginator = Paginator(cars, 3)
+    paginator = Paginator(cars, 4)
     page_obj = paginator.get_page(request.GET.get('page', 1))  # Objects on the page
 
     return render(request, 'cars/cars.html', {

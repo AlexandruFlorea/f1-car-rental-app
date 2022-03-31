@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 
 {% block title %}
@@ -6,64 +7,65 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-        <div>
-            <h2 class="main">Available circuits</h2>
-            <br>
-                {% if booking %}
-                    <h5>Select your circuit:</h5>
-                {% endif %}
-        </div>
+<div class="title">
+    {% if booking %}
+        <h2>Select your circuit:</h2>
+    {% else %}
+        <h2>Available circuits</h2>
+    {% endif %}
+</div>
 
+<div>
     <nav aria-label="Page navigation example">
-    <ul class="pagination">
-        {% if page_obj.paginator.num_pages > 1 %}
-                {% if page_obj.has_previous %}
-                   <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
-                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a></li>
-                {% endif %}
-                    <li class="page-item disabled"><a class="page-link" href="#">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a></li>
-                {% if page_obj.has_next %}
-                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a></li>
-                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></li>
-                {% endif %}
-        {% endif %}
-    </ul>
+        <ul class="pagination">
+            {% if page_obj.paginator.num_pages > 1 %}
+                    {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a></li>
+                    {% endif %}
+                        <li class="page-item disabled"><a class="page-link" href="#">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a></li>
+                    {% if page_obj.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a></li>
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></li>
+                    {% endif %}
+            {% endif %}
+        </ul>
     </nav>
-        <div>
-            <ul>
-                {% for track in page_obj %}
-                    {% for image in track.gallery_image_urls %}
-                        {% if booking %}
+    <div class="tracks-container">
+        {% for track in page_obj %}
+        <div class="tracks-item">
+            <div >
+                {% for image in track.gallery_image_urls %}
+                    {% if booking %}
+                        <img src="{{ image }}" alt="" width="500">
+                    {% else %}
+                        <a href="{% url 'tracks:details' track.id %}">
                             <img src="{{ image }}" alt="" width="500">
-                        {% else %}
-                            <a href="{% url 'tracks:details' track.id %}">
-                                <img src="{{ image }}" alt="" width="500">
-                            </a>
-                        {% endif %}
-                    {% endfor %}
-                        <li style="margin-bottom: 10px;" class="col-12">
-                        <div>
-                            <strong>{{ track.name }}</strong>, located in {{ track.location }}
-                            {% if booking %}
-                                {% if track.available %}
-                                <a href="{% url 'bookings:add_track_to_cart' track.id %}">
-                                    <button class="btn btn-info">Book this track</button>
-                                </a>
-                                {% else %}
-                                    <a href="">
-                                        <button class="btn btn-warning" disabled>Fully booked!</button>
-                                    </a>
-                                {% endif %}
-                            {% else %}
-                                <a href="{% url 'tracks:details' track.id %}">
-                                    <button class="btn btn-secondary">Track details</button>
-                                </a>
-                            {% endif %}
-                        </div>
-                    </li>
+                        </a>
+                    {% endif %}
                 {% endfor %}
-            </ul>
+            </div>
+            <div>
+                <strong>{{ track.name }}</strong>, located in {{ track.location }}
+                {% if booking %}
+                    {% if track.available %}
+                    <a href="{% url 'bookings:add_track_to_cart' track.id %}" style="text-decoration: none;">
+                        <button class="long-button">Book this track</button>
+                    </a>
+                    {% else %}
+                        <a href="" style="text-decoration: none;">
+                            <button class="long-button btn-warning" style="cursor: not-allowed;" disabled>Fully booked!</button>
+                        </a>
+                    {% endif %}
+                {% else %}
+                    <a href="{% url 'tracks:details' track.id %}" style="text-decoration: none;">
+                        <button class="long-button">Track details</button>
+                    </a>
+                {% endif %}
+            </div>
         </div>
+        {% endfor %}
+        
+    </div>
 </div>
 {% endblock %}

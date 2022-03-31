@@ -14,16 +14,11 @@
     th, td {
       background-color: #ffffff;
     }
-</style>-
+    margin: 20px;
+</style>
     <body style="background-image: url(//localhost:8000/static/cars/images/wallpapers/win.jpg)">
-    <h2 class="main" style="color: white">My bookings</h2>
+    <h2 class="main" style="color: white" align="center">My bookings</h2>
     <br>
-        <form method="POST" action="{% url 'bookings:all' %}">
-            <input type="text" name="q" placeholder="Search bookings"/>
-            <button class="btn btn-secondary" type="submit">Search</button>
-
-            {% csrf_token %}
-        </form>
     <br>
     <nav aria-label="Page navigation example">
         <ul class="pagination">
@@ -45,9 +40,10 @@
             <button class="btn btn-primary">Export all bookings to csv</button>
         </a>
     </div>
-        <div>
-
+        <div style="margin: 30px">
+            <form action="">
             <table style="width:60%;">
+
                 <tr>
                     <th>Booking number</th>
                     <th>Track</th>
@@ -55,6 +51,7 @@
                     <th>Booked date</th>
                     <th>Booking status</th>
                     <th>Details</th>
+                    <th>Description</th>
                 </tr>
             {% for booking in page_obj %}
                 <tr>
@@ -63,16 +60,18 @@
                     <td>{{ booking.car }}</td>
                     <td>{{ booking.date }}</td>
                     <td>{{ booking.status }}</td>
+                    <td>{{ booking.description }}</td>
                     <td>
                         <a href="{% url 'bookings:details' booking.id %}">
                         <button class="btn btn-secondary">Order details</button>
                         </a>
                     </td>
+
                 </tr>
             {% endfor %}
             </table>
 
-
+            </form>
         </div>
 
     </body>

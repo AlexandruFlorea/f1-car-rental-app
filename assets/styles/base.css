@@ -1,0 +1,255 @@
+/* Main content */
+.main {
+    margin-top: 70px; /* Add a top margin to avoid content overlay */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .title {
+    margin-top: 70px; /* Add a top margin to avoid content overlay */
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.long-button {
+  text-decoration: none;
+  width: 250px;
+  margin: 5px auto;
+  padding: 1px 70px;
+  color: #fff;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+  border: 1px solid transparent;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.long-button:hover {
+  background-color: #04AA6D;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+a:hover, a:visited, a:link, a:active {
+  text-decoration: none;
+}
+
+button :hover {
+  text-decoration: none;
+
+}
+
+/* CSS */
+.button-49,
+.button-49:after {
+  width: 150px;
+  height: 10px;
+  line-height: 10px;
+  font-size: 14px;
+  font-family: 'Bebas Neue', sans-serif;
+  background: linear-gradient(45deg, transparent 5%, #FF013C 5%);
+  border: 0;
+  color: #fff;
+  letter-spacing: 3px;
+  box-shadow: 6px 0px 0px #00E6F6;
+  outline: transparent;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-49:after {
+  --slice-0: inset(50% 50% 50% 50%);
+  --slice-1: inset(80% -6px 0 0);
+  --slice-2: inset(50% -6px 30% 0);
+  --slice-3: inset(10% -6px 85% 0);
+  --slice-4: inset(40% -6px 43% 0);
+  --slice-5: inset(80% -6px 5% 0);
+  
+  content: 'Revving';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #FF013C 5%);
+  text-shadow: -3px -3px 0px #F8F005, 3px 3px 0px #00E6F6;
+  clip-path: var(--slice-0);
+}
+
+.button-49:hover:after {
+  animation: 1s glitch;
+  animation-timing-function: steps(2, end);
+}
+
+@keyframes glitch {
+  0% {
+    clip-path: var(--slice-1);
+    transform: translate(-20px, -10px);
+  }
+  10% {
+    clip-path: var(--slice-3);
+    transform: translate(10px, 10px);
+  }
+  20% {
+    clip-path: var(--slice-1);
+    transform: translate(-10px, 10px);
+  }
+  30% {
+    clip-path: var(--slice-3);
+    transform: translate(0px, 5px);
+  }
+  40% {
+    clip-path: var(--slice-2);
+    transform: translate(-5px, 0px);
+  }
+  50% {
+    clip-path: var(--slice-3);
+    transform: translate(5px, 0px);
+  }
+  60% {
+    clip-path: var(--slice-4);
+    transform: translate(5px, 10px);
+  }
+  70% {
+    clip-path: var(--slice-2);
+    transform: translate(-10px, 10px);
+  }
+  80% {
+    clip-path: var(--slice-5);
+    transform: translate(20px, -10px);
+  }
+  90% {
+    clip-path: var(--slice-1);
+    transform: translate(-10px, 0px);
+  }
+  100% {
+    clip-path: var(--slice-1);
+    transform: translate(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .button-49,
+  .button-49:after {
+    width: 200px;
+    height: 86px;
+    line-height: 88px;
+  }
+}
+
+/* From cssbuttons.io by @menezes11 */
+.lights-on {
+  position: relative;
+  padding: 1px 1px;
+  outline: none;
+  border: 1px solid #303030;
+  background: #ffffff;
+  color: #e40d31;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  overflow: hidden;
+  transition: 0.2s;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  height: 30px;
+  width: 250px;
+  display: block;
+  align-items: center;
+ }
+ 
+ .lights-on:hover {
+  box-shadow: 0 0 5px #ff002b, 0 0 10px #ff002b, 0 0 15px #ff0000;
+  transition-delay: 0.6s;
+  text-decoration: none;
+  background: #000000;
+ }
+ 
+ .lights-on span {
+  position: absolute;
+ }
+ 
+ .lights-on span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ff0000);
+ }
+ 
+ .lights-on:hover span:nth-child(1) {
+  left: 100%;
+  transition: 0.7s;
+ }
+ 
+ .lights-on span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ff0000);
+ }
+ 
+ .lights-on:hover span:nth-child(3) {
+  right: 100%;
+  transition: 0.7s;
+  transition-delay: 0.35s;
+ }
+ 
+ .lights-on span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #ff0000);
+ }
+ 
+ .lights-on:hover span:nth-child(2) {
+  top: 100%;
+  transition: 0.7s;
+  transition-delay: 0.17s;
+ }
+ 
+ .lights-on span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #ff0000);
+ }
+ 
+ .lights-on:hover span:nth-child(4) {
+  bottom: 100%;
+  transition: 0.7s;
+  transition-delay: 0.52s;
+ }
+ 
+ .lights-on:active {
+  background: #af0000;
+  background: linear-gradient(to top right, #af0000, #ff0000);
+  color: #bfbfbf;
+  box-shadow: 0 0 8px #ff0000, 0 0 8px #ff0000, 0 0 8px #ff000d;
+  transition: 0.1s;
+ }
+ 
+ .lights-on:active span:nth-child(1) 
+ span:nth-child(2) 
+ span:nth-child(2) 
+ span:nth-child(2) {
+  transition: none;
+  transition-delay: none;
+ }
+ 
