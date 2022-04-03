@@ -8,7 +8,7 @@
 }
 
 .cars-content {
-    width: 80%;
+    width: 70%;
     margin: 0 auto;
 }
 
@@ -34,4 +34,17 @@
     /* z-index: -1; */
 }
 
+.cars-description {
+    width: 25rem;
+    margin: 0 auto;
+    align-self: center;
+}
+
+.cars-details {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    justify-content: space-around;
+    margin: 0 auto;
+}
 

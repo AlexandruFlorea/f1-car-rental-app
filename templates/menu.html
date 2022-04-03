@@ -7,8 +7,8 @@
             <a href="/">Homepage</a>
             <a href="{% url 'cars:all' %}">Teams</a>
             <a href="{% url 'tracks:all' %}">Tracks</a>
-            <a href="{% url 'bookings:create' %}"><strong>Start booking process</strong></a>
             <a href="{% url 'blogs:all' %}">Blogs</a>
+            <a href="{% url 'bookings:create' %}" style="color: rgb(241, 1, 1);"><strong>Start booking process</strong></a>
         </div>
 
         <form class="search" method="POST" action="{% url 'search' %}" style="width: 500px;">

@@ -1,6 +1,4 @@
 {% extends 'base.html' %}
-{% load static %}
-
 
 {% block title %}
     <title>Circuit selection</title>
@@ -34,7 +32,7 @@
     <div class="tracks-container">
         {% for track in page_obj %}
         <div class="tracks-item">
-            <div >
+            <div>
                 {% for image in track.gallery_image_urls %}
                     {% if booking %}
                         <img src="{{ image }}" alt="" width="500">
@@ -50,7 +48,13 @@
                 {% if booking %}
                     {% if track.available %}
                     <a href="{% url 'bookings:add_track_to_cart' track.id %}" style="text-decoration: none;">
-                        <button class="long-button">Book this track</button>
+                        <button class="long-button lights-on">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Book this track
+                        </button>
                     </a>
                     {% else %}
                         <a href="" style="text-decoration: none;">

@@ -5,8 +5,9 @@
 {% endblock %}
 
 {% block content %}
-<div class="main" align="center">
-<h5>Enter your credentials below:</h5>
+<h4 class="title">User login</h4>
+<div class="container p-5" align="center">
+    <h5>Login to access your details</h5>
     <form action="{% url 'users:login' %}" method="post">
         {% csrf_token %}
         <div class="field">
@@ -18,16 +19,21 @@
             <input type="password" name="password" placeholder="Enter your password"/>
 
         </div>
+        <br>
         <button class="btn btn-primary" type="submit">Login</button>
     </form>
-    <p>
-        <a href="{% url 'users:social:begin' 'github' %}">Login with GitHub</a>
-    </p>
-    <p>
-        <a href="{% url 'users:social:begin' 'facebook' %}">Login with Facebook</a>
-    </p>
-    <p>
-        <a href="{% url 'users:social:begin' 'google-oauth2' %}">Login with Google</a>
-    </p>
+    <br>
+    <div>
+        <h5>Social login options</h5>
+        <p>
+            <a href="{% url 'users:social:begin' 'github' %}">Login with GitHub</a>
+        </p>
+        <p>
+            <a href="{% url 'users:social:begin' 'facebook' %}">Login with Facebook</a>
+        </p>
+        <p>
+            <a href="{% url 'users:social:begin' 'google-oauth2' %}">Login with Google</a>
+        </p>
+    </div>
 </div>
 {% endblock %}

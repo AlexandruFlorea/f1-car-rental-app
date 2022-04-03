@@ -1,48 +1,70 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>Checkout</title>
+{% endblock %}
 
 {% block content %}
-    <div class="main">
-        <div class="container">
-            <h4>Booking details</h4>
-            <br>
-            {% if not car and not track %}
-                <p>No booking details.</p>
-            {% else %}
-                {% if track %}
-                    <p>Selected track: <strong>{{ track.name }}</strong> - {{ track.location }}</p>
+<div class="title">
+    <h2>Booking details</h2>
+</div>
+<br>
+    <div class="checkout-container">
+        {% if not car and not track %}
+            <h4>No booking in progress.</h4>
+        {% else %}
+            {% if track %}
+                <div class="checkout-item">
                     {% for image in track.first_image_url %}
                         <img src="{{ image }}" alt="" height="180px">
                     {% endfor %}
+                    <br>
+                    <p><strong>Selected track: </strong>{{ track.name }} - {{ track.location }}</p>
                         <form method="post" action="{% url 'bookings:remove_track_from_cart' track.id %}">
                             {% csrf_token %}
-                            <input class="btn btn-danger" type="submit" value="Remove"/>
+                            <input class="long-button red-button" type="submit" value="Remove"/>
                         </form>
-                    <p>Booking date: <strong>{{ track.race_day }}</strong></p>
-                {% endif %}
+                </div>
+            {% endif %}
 
-                {% if car %}
-                    <p>Total cost: <strong>{{ car.rate }} EUR/session</strong></p>
-                    <p>Selected car: <strong>{{ car.name }}</strong></p>
+            {% if car %}
+                <div class="checkout-item" style="display: flex; justify-content: space-between; padding-top: 80px;">
                     {% for image in car.image_urls %}
                         <img src="{{ image }}" alt="car_image" height="100px">
                     {% endfor %}
-
-                       <form method="post" action="{% url 'bookings:remove_car_from_cart' car.id %}">
-                            {% csrf_token %}
-                            <input class="btn btn-danger" type="submit" value="Remove"/>
-                       </form>
-                {% endif %}
-            <br>
-                {% if car and track %}
-                    <form method="post" id="id_form" class="mx-auto text-left">
+                    <p><strong>Selected car: </strong>{{ car.name }}</p>
+                    <br>
+                    <form method="post" action="{% url 'bookings:remove_car_from_cart' car.id %}">
                         {% csrf_token %}
-                        <button type="submit" class=" d-block btn btn-lg btn-success mt-4 w-50 mx-auto">
-                            Confirm booking
-                        </button>
+                        <input class="long-button red-button" type="submit" value="Remove"/>
                     </form>
-                {% endif %}
+                </div>
+
             {% endif %}
-        </div>
+            <div class="checkout-item">
+                {% if car %}
+                    <p><strong>Total cost: </strong>{{ car.rate }} EUR/session</p>
+                {% endif %}
+
+                {% if track %}
+                    <p><strong>Booking date: </strong>{{ track.race_day }}</p>
+                {% endif %}
+            </div>            
+        {% endif %}
     </div>
+    <br>
+    {% if car and track %}
+        <div style="display: flex; justify-content: center;">
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="lights-on" style="height: 70px; width: 350px; font-size: 17px;">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Confirm booking
+                </button>
+            </form>
+        </div>
+    {% endif %}
 {% endblock %}

@@ -5,31 +5,28 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <h3 class="main">{{ car.name }}</h3>
-    <br>
-    <a href="{% url 'cars:all' %}">
-        <button class="btn btn-primary">Back to list view</button>
-    </a>
-    <div>
-        <ul>
-            {% for image in car.gallery_image_urls %}
-                <img src="{{ image }}" width="1000px" alt="main">
-            {% endfor %}
-        </ul>
+<div class="cars-details">
+    <div class="cars-content">
+        <h3 class="title">{{ car.name }}</h3>
+        <br>
+            <button class="long-button" style="padding: 1px 20px;">
+                <a href="{% url 'cars:all' %}" style=" text-decoration: none; color: white;">Back to list view</a>
+            </button>
+        
+        {% include 'cars/car_gallery.html' %}
     </div>
-        <div class="container">
+    <div class="card cars-description">
+        <div class="card-body">
             <p><strong>Category:</strong> {{ car.category.name }}</p>
             <p><strong>Team name:</strong> {{ car.name }}</p>
             <p><strong>Power unit:</strong> {{ car.power_unit }}</p>
             <p><strong>Handling: </strong>{{ car.handling }}/10</p>
             <p><strong>Rate:</strong> {{ car.rate }} EUR per session</p>
+            {% if request.user.is_authenticated %}
+                <p>Times booked so far: {{ car.bookings.all.count }}</p>
+            {% endif %}
         </div>
-        {% if request.user.is_authenticated %}
-        <div>
-            <h5>Times booked so far: {{ car.bookings.all.count }}</h5>
+    </div>
 
-        </div>
-        {% endif %}
 </div>
 {% endblock %}

@@ -10,7 +10,7 @@
 /* Style the active/current link */
 .pagination a.active {
   background-color: dodgerblue;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 /* Add a grey background color on mouse-over */
