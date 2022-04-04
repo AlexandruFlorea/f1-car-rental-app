@@ -1,47 +1,22 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block title %}
     <title>My bookings</title>
 {% endblock %}
 
 {% block content %}
-<style>
-    table, th, td {
-      border: 1px solid white;
-      border-collapse: collapse;
-    }
-    th, td {
-      background-color: #ffffff;
-    }
-    margin: 20px;
-</style>
-    <body style="background-image: url(//localhost:8000/static/cars/images/wallpapers/win.jpg)">
-    <h2 class="main" style="color: white" align="center">My bookings</h2>
+
+<body style="background-image: url(//localhost:8000/static/cars/images/wallpapers/win.jpg)">
+    <h2 class="title">My bookings</h2>
     <br>
-    <br>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            {% if page_obj.paginator.num_pages > 1 %}
-                    {% if page_obj.has_previous %}
-                       <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
-                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a></li>
-                    {% endif %}
-                        <li class="page-item disabled"><a class="page-link" href="#">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a></li>
-                    {% if page_obj.has_next %}
-                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a></li>
-                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></li>
-                    {% endif %}
-            {% endif %}
-        </ul>
-    </nav>
-    <div>
-        <a href="{% url 'bookings:export_to_csv' %}">
-            <button class="btn btn-primary">Export all bookings to csv</button>
-        </a>
-    </div>
-        <div style="margin: 30px">
-            <form action="">
+    {% include 'pagination.html' %}
+    <div class="mybookings-container">
+        <div class="mybookings-item">
+            <a href="{% url 'bookings:export_to_csv' %}" style="text-decoration: none;">
+                <button class="long-button" style="margin: 0%;">Export all bookings to csv</button>
+            </a>
+        </div>
+        <div class="mybookings-item">
             <table style="width:60%;">
 
                 <tr>
@@ -51,7 +26,6 @@
                     <th>Booked date</th>
                     <th>Booking status</th>
                     <th>Details</th>
-                    <th>Description</th>
                 </tr>
             {% for booking in page_obj %}
                 <tr>
@@ -60,21 +34,18 @@
                     <td>{{ booking.car }}</td>
                     <td>{{ booking.date }}</td>
                     <td>{{ booking.status }}</td>
-                    <td>{{ booking.description }}</td>
                     <td>
-                        <a href="{% url 'bookings:details' booking.id %}">
-                        <button class="btn btn-secondary">Order details</button>
+                        <a href="{% url 'bookings:details' booking.id %}" style="text-decoration: none;">
+                            <button class="long-button" style="width: 150px;">Order details</button>
                         </a>
                     </td>
 
                 </tr>
             {% endfor %}
             </table>
-
-            </form>
         </div>
-
-    </body>
+    </div>
+</body>
 
 
 {% endblock %}

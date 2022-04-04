@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block title %}
 <title>My profile</title>
@@ -8,39 +7,22 @@
 {% block content %}
 <body style="background-image: url(//localhost:8000/static/cars/images/wallpapers/win.jpg)">
     <h2 class="title" style="color: white">Profile details</h2>
-    <div class="container">
-        <div class="row">
-            <div class="col-6">
-                <div class="row">
-                    <div class="col-12">
-                        <img src="{{ request.user.profile.image_url }}" width="300px"  alt="profile image"/>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="row">
-                    <div class="col-12">
-                        <strong>First name: {{ request.user.first_name }}</strong>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <strong>Last name: {{ request.user.last_name }}</strong>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <strong>Email: {{ request.user.email }}</strong>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div style="color: white">
+    <br>
+    <div style="display: flex;">
+        <div class="profile-item" style="color: rgb(0, 0, 0);">
+            <img src="{{ request.user.profile.image_url }}" width="300px"  alt="profile image"/>
             <form method="post" action="{% url 'users:profile' %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <input type="submit" value="Upload" />
+                <input class="long-button" type="submit" value="Upload" />
             </form>
+        </div>
+        <div class="profile-item" style="text-align: center;">
+            <strong>
+                <p>First name: {{ request.user.first_name }}</p>
+                <p>Last name: {{ request.user.last_name }}</p>
+                <p>Email: {{ request.user.email }}</p>
+            </strong>
         </div>
     </div>
 </body>
