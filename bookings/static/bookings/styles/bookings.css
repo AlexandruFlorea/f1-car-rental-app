@@ -44,3 +44,9 @@ table, th, td {
     text-align: center;
   }
   
+.booking-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
