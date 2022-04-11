@@ -81,6 +81,8 @@ scrollbar-width: none;  /* Firefox */
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
+  align-self: center;
+  width: 60%;
 }
 
 .search-item {
@@ -89,14 +91,8 @@ scrollbar-width: none;  /* Firefox */
   align-items: center;
   box-sizing: content-box;
   margin: 10px;
-}
-
-.search-item, li {
-  border: 1px solid rgb(192, 192, 192);
-  border-collapse: collapse;
-  text-align: center;
-  background-color: #ffffff9d;
-  text-align: center;
+  border: white;
+  background-color: rgba(255, 255, 255, 0.534);
 }
 
 .long-button {

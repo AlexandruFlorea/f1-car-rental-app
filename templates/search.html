@@ -5,79 +5,81 @@
 {% endblock %}
 
 {% block content %}
-<body style="background-image: url(//localhost:8000/static/cars/images/wallpapers/win.jpg)">
-    <div>
-        <h2 class="title">Search results:</h2>
-        
-    </div>
-
-    <div class="search-container">
-        {% if not cars and not tracks and not bookings %}
-        <div class="search-item">
-            <h5>No results for "{{ query }}"</h5>
+<body style="background-image: url(//localhost:8000/static/cars/images/wallpapers/win.jpg); background-attachment: fixed;">
+    <div style="display: flex;flex-direction: column;">
+        <div>
+            <h2 class="title">Search results:</h2>
+            
         </div>
-        {% endif %}
-        {% include 'pagination.html' %}
-        <!-- Cars results -->
-        {% if cars %}
-        <div class="search-item">
-            <h5>Results for "{{ query }}" in Cars</h5>
-            {% for car in cars %}
-                <ul>
-                    <li>
-                        {{ car.name }}
-                        {% for image in car.image_urls %}
-                            <a href="{% url 'cars:details' car.id %}">
-                                <img src="{{ image }}" alt="Car details" width="200px">
+
+        <div class="search-container">
+            {% if not cars and not tracks and not bookings %}
+            <div class="search-item">
+                <h5>No results for "{{ query }}"</h5>
+            </div>
+            {% endif %}
+            
+            <!-- Cars results -->
+            {% if cars %}
+            <div class="search-item">
+                <h5>Results for "{{ query }}" in Cars</h5>
+                {% for car in cars %}
+                    <ul>
+                        <li>
+                            {{ car.name }}
+                            {% for image in car.image_urls %}
+                                <a href="{% url 'cars:details' car.id %}">
+                                    <img src="{{ image }}" alt="Car details" width="200px">
+                                </a>
+                            {% endfor %}
+                            <a href="{% url 'cars:details' car.id %}" style="text-decoration: none;">
+                                <button class="long-button" style="width: 150px;">More details</button>
                             </a>
-                        {% endfor %}
-                        <a href="{% url 'cars:details' car.id %}">
-                            <button class="long-button">More details</button>
-                        </a>
-                    </li>
-                </ul>
-            {% endfor %}
-        </div>
-        {% endif %}
+                        </li>
+                    </ul>
+                {% endfor %}
+            </div>
+            {% endif %}
 
-        <!-- Tracks results -->
-        {% if tracks %}
-        <div class="search-item">
-            <h5>Results for "{{ query }}" in Tracks</h5>
-            {% for track in tracks %}
-                <ul>
-                    <li>
-                        <strong>{{ track.name }}</strong>, located in {{ track.location }}
-                        {% for image in track.gallery_image_urls %}
-                            <a href="{% url 'tracks:details' track.id %}">
-                                <img src="{{ image }}" alt="Track details" width="150px">
+            <!-- Tracks results -->
+            {% if tracks %}
+            <div class="search-item">
+                <h5>Results for "{{ query }}" in Tracks</h5>
+                {% for track in tracks %}
+                    <ul>
+                        <li>
+                            <strong>{{ track.name }}</strong>, located in {{ track.location }}
+                            {% for image in track.gallery_image_urls %}
+                                <a href="{% url 'tracks:details' track.id %}" style="text-decoration: none;">
+                                    <img src="{{ image }}" alt="Track details" width="150px">
+                                </a>
+                            {% endfor %}
+                            <a href="{% url 'tracks:details' track.id %}" style="text-decoration: none;">
+                                <button class="long-button" style="width: 150px;">More details</button>
                             </a>
-                        {% endfor %}
-                        <a href="{% url 'tracks:details' track.id %}">
-                            <button class="btn btn-secondary">More details</button>
-                        </a>
-                    </li>
-                </ul>
-            {% endfor %}
-        </div>
-        {% endif %}
+                        </li>
+                    </ul>
+                {% endfor %}
+            </div>
+            {% endif %}
 
-        <!-- Bookings results -->
-        {% if bookings %}
-        <div class="search-item">
-            <h5>Results for "{{ query }}" in my Bookings</h5>
-            {% for booking in bookings %}
-                <ul>
-                    <li>
-                        {{ booking.booking_number }} - {{ booking.track }} - {{ booking.car }} - {{ booking.date }} - {{ booking.status }}
-                        <a href="{% url 'bookings:details' booking.id %}">
-                            <button class="long-button">Order details</button>
-                        </a>
-                    </li>
-                </ul>
-            {% endfor %}
+            <!-- Bookings results -->
+            {% if bookings %}
+            <div class="search-item">
+                <h5>Results for "{{ query }}" in my Bookings</h5>
+                {% for booking in bookings %}
+                    <ul>
+                        <li>
+                            {{ booking.booking_number }} - {{ booking.track }} - {{ booking.car }} - {{ booking.date }} - {{ booking.status }}
+                            <a href="{% url 'bookings:details' booking.id %}" style="text-decoration: none;">
+                                <button class="long-button"  style="width: 150px;">Order details</button>
+                            </a>
+                        </li>
+                    </ul>
+                {% endfor %}
+            </div>
+            {% endif %}
         </div>
-        {% endif %}
     </div>
 </body>
 {% endblock content %}
