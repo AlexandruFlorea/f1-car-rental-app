@@ -5,14 +5,16 @@
 {% endblock %}
 
 {% block content %}
+<div>
+    <h3 class="title">{{ car.name }}</h3>
+    <br>
+    <button class="long-button" style="padding: 1px 20px;">
+        <a href="{% url 'cars:all' %}" style=" text-decoration: none; color: white;">Back to list view</a>
+    </button>
+</div>
 <div class="cars-details">
+
     <div class="cars-content">
-        <h3 class="title">{{ car.name }}</h3>
-        <br>
-            <button class="long-button" style="padding: 1px 20px;">
-                <a href="{% url 'cars:all' %}" style=" text-decoration: none; color: white;">Back to list view</a>
-            </button>
-        
         {% include 'cars/car_gallery.html' %}
     </div>
     <div class="card cars-description">

@@ -18,6 +18,7 @@
             <!-- Load icon library -->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="icon" type="image/x-icon" href="{% static 'cars/images/logos/F1-logo-red.png' %}">
+            <link rel="icon" type="image/x-icon" href="{% static 'cars/images/logos/favicon.ico' %}">
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         {% endblock %}
         {% block script %}
@@ -28,15 +29,18 @@
         {% endblock %}
     </head>
     <body>
-        {% include 'messages.html' %}
-        {% include 'menu.html' %}
+        <div style=" min-height: calc(100vh - 165px)!important;">
+            {% include 'messages.html' %}
+            {% include 'menu.html' %}
 
-        {% block content %}
+            {% block content %}
 
-        {% endblock %}
-    </body>
+            {% endblock %}
+        </div>
         <footer>
             <p>Formula 1 Experience</p>
             <a href="{% url 'about' %}">About us</a>
         </footer>
+    </body>
+
 </html>

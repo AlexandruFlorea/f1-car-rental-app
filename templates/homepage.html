@@ -5,49 +5,60 @@
 {% block title %}
 <head>
     <title>F1 experience</title>
-    <link rel="icon" type="image/x-icon" href="{% static 'cars/images/logos/favicon.ico' %}">
 </head>
 {% endblock %}
 
 {% block content %}
-<body style="background-image: url(/static/cars/images/wallpapers/win.jpg)">
-    <div class="main" style="color: white">
-        <h2>
-            <img src="{% static 'cars/images/logos/F1-logo-red.png' %}" width="75"  alt=""/>
-            <span>{{ title }}</span>
-        </h2>
-        <div class="container">
-            <h4 style="color: white"><em>Most wanted:</em></h4>
-            <ul>
-                {% for key, value in top_5.items %}
-                    <li style="margin-bottom: 0px;">
-                        <strong>{{ key }}</strong>: {{ value }} rentals
-                    </li>
-                {% endfor %}
-            </ul>
-            <div>
-                <h5>Latest bookings</h5>
+
+    <div class="hp-container">
+        <span>
+            <img src="/static/cars/images/wallpapers/win.jpg" alt="" style="width: 100vw;">
+        </span>
+        <div class="hp-title-container">
+            <div class="hp-title">
+                <h2 style="font-size: 4em; font-weight: 700;">
+                    <img src="{% static 'cars/images/logos/F1-logo-red.png' %}" width="150px"  alt=""/>
+                    <span>{{ title }}</span>        
+                </h2>
+            </div>
+            <div style="position: absolute; top: 200px; left: 45%;">
+                <a href="{% url 'bookings:create' %}" style="text-decoration: none;">
+                    <button class="lights-on" style="height: 65px;">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Starts right here!
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class="hpcard-holder">
+            <div class="hp-card">
+                <h4>Most wanted:</h4>
                 <ul>
-                    {% for booking in latest_bookings %}
-                        <li>
-                            {{ booking.booking_number }} - {{ booking.car }} - {{ booking.track }}
+                    {% for key, value in top_5.items %}
+                        <li style="margin-bottom: 0px;">
+                            <strong>{{ key }}</strong>: {{ value }} rentals
                         </li>
                     {% endfor %}
                 </ul>
             </div>
-            <div>
-            {% block random_fact %}
+            <div class="hp-card">
+
+            <h5>Sneak peak into the action</h5>
+            <iframe width="550" height="350" src="https://www.youtube.com/embed/kEP9R-osh7o" title="YouTube video player" frameborder="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="hp-card">
+                {% block random_fact %}
                 {% autoescape on %}
-                <p><strong>Random F1 fact:</strong> {{ random_fact }}</p>
+                <h5>Random F1 fact:</h5>
+                {{ random_fact }}</p>
                 {% endautoescape %}
             {% endblock random_fact %}
             </div>
-            <div>
-                <h5>Wanna see what it's like for an amateur to drive an F1 car?</h5>
-                <iframe width="650" height="350" src="https://www.youtube.com/embed/kEP9R-osh7o" title="YouTube video player" frameborder="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
         </div>
     </div>
-</body>
+
 
 {% endblock %}

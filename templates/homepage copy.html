@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+<head>
+    <title>F1 experience</title>
+</head>
+{% endblock %}
+
+{% block content %}
+<body style="background-image: url(/static/cars/images/wallpapers/win.jpg);">
+    <div class="main">
+        <h2>
+            <img src="{% static 'cars/images/logos/F1-logo-red.png' %}" width="75px"  alt=""/>
+            <span>{{ title }}</span>
+        </h2>
+        <div class="hp-container">
+            <div class="side-card">
+                <h4>Most wanted:</h4>
+                <ul>
+                    {% for key, value in top_5.items %}
+                        <li style="margin-bottom: 0px;">
+                            <strong>{{ key }}</strong>: {{ value }} rentals
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>  
+            <div>
+                <h5>Latest bookings</h5>
+                <ul>
+                    {% for booking in latest_bookings %}
+                        <li>
+                            {{ booking.booking_number }} - {{ booking.car }} - {{ booking.track }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div>
+            {% block random_fact %}
+                {% autoescape on %}
+                <p><strong>Random F1 fact:</strong> {{ random_fact }}</p>
+                {% endautoescape %}
+            {% endblock random_fact %}
+            </div>
+            <div>
+                <h5>Wanna see what it's like for an amateur to drive an F1 car?</h5>
+                <iframe width="650" height="350" src="https://www.youtube.com/embed/kEP9R-osh7o" title="YouTube video player" frameborder="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock %}

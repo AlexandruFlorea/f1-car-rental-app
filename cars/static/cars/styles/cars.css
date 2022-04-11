@@ -34,12 +34,6 @@
     /* z-index: -1; */
 }
 
-.cars-description {
-    width: 25rem;
-    margin: 0 auto;
-    align-self: center;
-}
-
 .cars-details {
     display: flex;
     flex-wrap: wrap;
@@ -47,4 +41,12 @@
     justify-content: space-around;
     margin: 0 auto;
 }
+
+.cars-description {
+    width: 25rem;
+    margin: 0 auto;
+    align-self: center;
+}
+
+
 

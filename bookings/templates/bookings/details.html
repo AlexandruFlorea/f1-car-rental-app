@@ -7,24 +7,24 @@
 {% block content %}
 
 <body style="background-image: url(//localhost:8000/static/cars/images/wallpapers/win.jpg)">
-    <h2 class="title" style="color: white">Booking details</h2>
+    <h2 class="title">Booking details</h2>
     <br>
-    <div class="checkout-item" style="color: white">
+    <div class="checkout-item" style="background-color: rgba(255, 255, 255, 0.658);">
 
-        <div>
-            <p>Booking number: {{ booking.booking_number }}</p>
+        <div style="width: auto; align-items:  left;">
+            <p><strong>Booking number: {{ booking.booking_number }}</strong></p>
             <p>Status: {{ booking.status }}</p>
             <p>Name: {{ booking.user.first_name }} {{ booking.user.last_name }}</p>
             <p>Date and time reserved: {{ booking.date }}</p>
             <p>Total cost: {{ booking.cost }} EUR</p>
         </div>
-        <div class="mybookings-item">
+        <div style="width: auto;">
             {% for image in booking.car.image_urls %}
                 <img src="{{ image }}" alt="" width="400px">
             {% endfor %}
             <p>Car: {{ booking.car }}</p>
         </div>
-        <div class="checkout-item">
+        <div style="width: auto;">
             {% for image in booking.track.first_image_url %}
                 <img src="{{ image }}" alt="" height="250px">
             {% endfor %}
@@ -34,7 +34,7 @@
             {% if not booking.canceled %}
             <form method="post" action="{% url 'bookings:cancel_booking' booking.id %}">
                 {% csrf_token %}
-                <input class="btn btn-danger" type="submit" value="Cancel booking"/>
+                <input class="long-button red-button" type="submit" value="Cancel booking"/>
             </form>
             {% endif %}
         </div>

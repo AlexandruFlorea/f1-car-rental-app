@@ -6,17 +6,17 @@
 
 {% block content %}
 <h4 class="title">User login</h4>
-<div class="container p-5" align="center">
+<div class="container p-5" align="center" style="border: 1px solid grey; width: 450px; border-radius: 5px; padding: 20px; display: flex; flex-direction: column; align-items: center;">
     <h5>Login to access your details</h5>
     <form action="{% url 'users:login' %}" method="post">
         {% csrf_token %}
-        <div class="field">
+        <div class="field" style="padding: 2px 20px; width:370px; display: flex; justify-content: space-between;">
             <label>Email address</label>
-            <input type="text" name="email" placeholder="Enter your email address"/>
+            <input type="text" name="email" placeholder="Enter your email address" style="width: 200px;"/>
         </div>
-        <div class="field">
+        <div class="field" style="padding: 2px 20px; width:370px; display: flex; justify-content: space-between;">
             <label>Password</label>
-            <input type="password" name="password" placeholder="Enter your password"/>
+            <input type="password" name="password" placeholder="Enter your password" style="width: 200px;"/>
 
         </div>
         <br>
