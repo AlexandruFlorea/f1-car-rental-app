@@ -30,7 +30,6 @@ def homepage_view(request):
 
     return render(request, 'homepage.html', {
         'title': title,
-        'latest_bookings': latest_bookings,
         'top_5': top_5,
         'random_fact': random_fact,
     })
