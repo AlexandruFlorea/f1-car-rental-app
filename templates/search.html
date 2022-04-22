@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 <title>Search results</title>
@@ -6,12 +7,12 @@
 
 {% block content %}
 <body style="background-image: url({% static 'cars/images/wallpapers/win.jpg' %}); background-attachment: fixed;">
-    <div style="display: flex;flex-direction: column;">
-        <div>
-            <h2 class="title">Search results:</h2>
-            
-        </div>
 
+<!--        <div>-->
+        <h2 class="title">Search results:</h2>
+        <br>
+<!--        </div>-->
+    <div style="display: flex;flex-direction: column;">
         <div class="search-container">
             {% if not cars and not tracks and not bookings %}
             <div class="search-item">
@@ -82,5 +83,5 @@
         </div>
     </div>
 </body>
-{% endblock content %}
+{% endblock %}
 
