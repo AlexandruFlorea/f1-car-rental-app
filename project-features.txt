@@ -57,7 +57,7 @@ Reservation - available fields
 1. .env - done
 2. Passwordless authentication - done
 3. Authenticate with email instead of username - done
-        Change username with email for authentication - Make sure there are no other apps installed. Migrate Users app first, but do not define anything in you AuthUser (just pass).
+        Change username with email for authentication - Make sure there are no other apps installed. Migrate Users app first, but do not define anything in your AuthUser (just pass).
         After generating the migration, define your Custom AuthUser model, with email instead of username.
 4. Send confirmation email - done
 5. Registration - done
