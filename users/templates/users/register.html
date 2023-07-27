@@ -11,7 +11,7 @@
     <h3>User registration</h3>
     <form action="{% url 'users:register' %}" method="POST">
         {% csrf_token %}
-        {{ form|crispy }}
+        {{ form.as_p }}
         <br>
         <button class="btn btn-primary" type="submit">Register</button>
     </form>

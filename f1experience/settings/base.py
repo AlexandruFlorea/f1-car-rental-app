@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'bookings.apps.BookingsConfig',
     'crispy_forms',
+    'crispy_bootstrap4',
     'tracks.apps.TracksConfig',
     'cars.apps.CarsConfig',
     'blogs.apps.BlogsConfig',
@@ -230,3 +231,5 @@ CSRF_COOKIE_SECURE = False
 SECURE_HSTS_SECONDS = None
 SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 SECURE_FRAME_DENY = False
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
