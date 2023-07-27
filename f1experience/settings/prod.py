@@ -3,8 +3,8 @@ from f1experience.settings.base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ['ec2-3-140-239-54.us-east-2.compute.amazonaws.com']
-LOCALHOST_DOMAIN = 'http://ec2-3-140-239-54.us-east-2.compute.amazonaws.com'
+ALLOWED_HOSTS = ['ec2-13-53-212-163.eu-north-1.compute.amazonaws.com']
+LOCALHOST_DOMAIN = 'http://ec2-13-53-212-163.eu-north-1.compute.amazonaws.com'
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
